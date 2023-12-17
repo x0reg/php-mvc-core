@@ -1,0 +1,15 @@
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    # Ngăn chặn truy cập trực tiếp vào các thư mục và file cụ thể
+    RewriteRule ^(model|config|controller|router|vendor|view)/.*$ - [R=404,L]
+    # Các quy tắc RewriteRule khác nếu cần
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
