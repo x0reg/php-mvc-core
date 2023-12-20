@@ -6,6 +6,20 @@
 <!-- <script src="public/js/devtool.js"></script> -->
 <script src="/public/js/ajax.js"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.copyText');
+
+    clipboard.on('success', function(e) {
+        alert("Copy Thành Công " + e.text)
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+</script>
 <script>
     // Chặn tất cả phím tắt mở DevTools
     // document.onkeydown = function(e) {

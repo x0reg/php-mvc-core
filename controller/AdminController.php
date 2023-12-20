@@ -21,20 +21,44 @@ class AdminController extends BaseController
 
         $getAllDataHistory = $admin->getAllDataHistory();
         ////thống kê hôm nay
-        $totalAmoutRecharge = $admin->getToltalAmoutRechargeToday();
-        $totalAmountWithDraw = $admin->getToltalAmoutWithDrawToday();
-        $getTotalAmountNVHN = $admin->getTotalAmountNVHN();
+        $totalAmoutRecharge = $admin->getToltalAmoutRechargeToday(date("Y-m-d"));
+        $totalAmountWithDraw = $admin->getToltalAmoutWithDrawToday(date("Y-m-d"));
+        $getTotalAmountNVHN = $admin->getTotalAmountNVHN(date("Y-m-d"));
         $doanhthutoday = $totalAmoutRecharge - $totalAmountWithDraw -  $getTotalAmountNVHN;
+        ////thống kê ngày trước
+        $totalAmoutRechargengaytruoc = $admin->getToltalAmoutRechargeToday(date("Y-m-d", strtotime("-1 days")));
+        $totalAmountWithDrawngaytruoc = $admin->getToltalAmoutWithDrawToday(date("Y-m-d", strtotime("-1 days")));
+        $getTotalAmountNVHNngaytruoc = $admin->getTotalAmountNVHN(date("Y-m-d", strtotime("-1 days")));
+        $doanhthungaytruoc = $totalAmoutRechargengaytruoc - $totalAmountWithDrawngaytruoc -  $getTotalAmountNVHNngaytruoc;
         ////thống kê tuần này
-        $getTotalAmountRechargeWeek = $admin->getTotalAmountRechargeWeek();
-        $getTotalAmountWithDrawWeek = $admin->getTotalAmountWithDrawWeek();
-        $getTotalAmountNVHNWeek = $admin->getTotalAmountNVHNWeek();
+        $startOfWeek = date("Y-m-d", strtotime("monday this week"));
+        $endOfWeek = date("Y-m-d", strtotime("sunday this week"));
+        $getTotalAmountRechargeWeek = $admin->getTotalAmountRechargeWeek($startOfWeek, $endOfWeek);
+        $getTotalAmountWithDrawWeek = $admin->getTotalAmountWithDrawWeek($startOfWeek, $endOfWeek);
+        $getTotalAmountNVHNWeek = $admin->getTotalAmountNVHNWeek($startOfWeek, $endOfWeek);
         $doanhthutuan =  $getTotalAmountRechargeWeek - $getTotalAmountWithDrawWeek - $getTotalAmountNVHNWeek;
+        ////thống kê tuần trước 
+        $startOfWeektuantruoc = date("Y-m-d", strtotime("last monday", strtotime("1 week ago")));
+        $endOfWeektuantruoc = date("Y-m-d", strtotime("last sunday"));
+        $getTotalAmountRechargeWeektuantruoc = $admin->getTotalAmountRechargeWeek($startOfWeektuantruoc, $endOfWeektuantruoc);
+        $getTotalAmountWithDrawWeektuantruoc = $admin->getTotalAmountWithDrawWeek($startOfWeektuantruoc, $endOfWeektuantruoc);
+        $getTotalAmountNVHNWeektuantruoc = $admin->getTotalAmountNVHNWeek($startOfWeektuantruoc, $endOfWeektuantruoc);
+        $doanhthutuantruoc =  $getTotalAmountRechargeWeektuantruoc - $getTotalAmountWithDrawWeektuantruoc - $getTotalAmountNVHNWeektuantruoc;
         ////thống kê tháng này
-        $getTotalAmountRechargeMonth = $admin->getTotalAmountRechargeMonth();
-        $getTotalAmountWithdrawMonth = $admin->getTotalAmountWithdrawMonth();
-        $getTotalAmountNVHNMonth = $admin->getTotalAmountNVHNMonth();
+        $startOfMonth = date("Y-m-01");
+        $endOfMonth = date("Y-m-t");
+        $getTotalAmountRechargeMonth = $admin->getTotalAmountRechargeMonth($startOfMonth, $endOfMonth);
+        $getTotalAmountWithdrawMonth = $admin->getTotalAmountWithdrawMonth($startOfMonth, $endOfMonth);
+        $getTotalAmountNVHNMonth = $admin->getTotalAmountNVHNMonth($startOfMonth, $endOfMonth);
         $doanhthumonth =   $getTotalAmountRechargeMonth - $getTotalAmountWithdrawMonth -  $getTotalAmountNVHNMonth;
+        ///thống kê tháng trước
+        $startOfMonththangtruoc = date("Y-m-01", strtotime("first day of last month"));
+        $endOfMonththangtruoc = date("Y-m-t", strtotime("last month"));
+        $getTotalAmountRechargeMonththangtruoc = $admin->getTotalAmountRechargeMonth($startOfMonththangtruoc, $endOfMonththangtruoc);
+        $getTotalAmountWithdrawMonththangtruoc = $admin->getTotalAmountWithdrawMonth($startOfMonththangtruoc, $endOfMonththangtruoc);
+        $getTotalAmountNVHNMonththangtruoc = $admin->getTotalAmountNVHNMonth($startOfMonththangtruoc, $endOfMonth);
+        $doanhthumonththangtruoc =   $getTotalAmountRechargeMonththangtruoc - $getTotalAmountWithdrawMonththangtruoc -  $getTotalAmountNVHNMonththangtruoc;
+
         return view('admin/dashboard', get_defined_vars());
     }
 

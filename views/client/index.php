@@ -59,11 +59,11 @@
                                                         <div>
                                                             <ul class="nav nav-pills flex gap-4 justify-center flex-wrap" id="pills-tabHorizontal" role="tablist">
                                                                 <li class="nav-item text-center" role="presentation">
-                                                                    <button class="nav-link active btn inline-flex justify-center btn-primary btn-sm" id="pills-home-tabHorizontal" data-bs-toggle="pill" data-bs-target="#game-chanLe" role="tab" aria-controls="game-chanLe" aria-selected="true">Chẵn Lẻ</button>
+                                                                    <button class="nav-link active btn inline-flex justify-center btn-primary btn-sm" id="pills-home-tabHorizontal" data-bs-toggle="pill" data-bs-target="#game-chanLe" role="tab" aria-controls="game-chanLe" aria-selected="true">Chẵn Lẻ - Tài Xỉu</button>
                                                                 </li>
 
                                                                 <li class="nav-item text-center" role="presentation">
-                                                                    <button href="#pills-contactHorizontal" class="nav-link block btn inline-flex justify-center btn-primary btn-sm" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#game-taiXiu" role="tab" aria-controls="game-taiXiu" aria-selected="false">Tài Xỉu</a>
+                                                                    <button href="#pills-contactHorizontal" class="nav-link block btn inline-flex justify-center btn-primary btn-sm" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#game-taiXiu" role="tab" aria-controls="game-taiXiu" aria-selected="false">May Mắn</a>
                                                                 </li>
 
                                                             </ul>
@@ -130,6 +130,55 @@
                                                                                             </div>
                                                                                         </label>
                                                                                     </div>
+
+                                                                                    <div class="game">
+                                                                                        <input id="gameTX_T" value="T" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
+                                                                                        <label for="gameTX_T" class="transition inline-flex peer-checked:hidden items-center w-full p-4 border-2 rounded-lg cursor-pointer group border-secondary-200/70 bg-white text-secondary-600">
+                                                                                            <div class="flex w-full flex-col justify-start gap-2">
+                                                                                                <div class="flex justify-between">
+                                                                                                    <div class="w-full font-bold">Tài</div>
+                                                                                                    <span class="font-bold ">x<?= $ratioTai["ratio"] ?></span>
+                                                                                                </div>
+                                                                                                <div class="w-full text-sm flex gap-2 opacity-60">
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        4
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        5
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        6
+                                                                                                    </span>
+
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+
+                                                                                    <div class="game">
+                                                                                        <input id="gameTX_X" value="X" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
+                                                                                        <label for="gameTX_X" class="transition inline-flex peer-checked:hidden items-center w-full p-4 border-2 rounded-lg cursor-pointer group border-secondary-200/70 bg-white text-secondary-600">
+                                                                                            <div class="flex w-full flex-col justify-start gap-2">
+                                                                                                <div class="flex justify-between">
+                                                                                                    <div class="w-full font-bold">Xỉu</div>
+                                                                                                    <span class="font-bold">x<?= $ratioXiu["ratio"] ?></span>
+                                                                                                </div>
+                                                                                                <div class="w-full text-sm flex gap-2 opacity-60">
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        1
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        2
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        3
+                                                                                                    </span>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
                                                                                 </div>
                                                                                 <br>
                                                                                 <?php include(__DIR__ . "/layout/buttonAmount.php") ?>
@@ -159,38 +208,13 @@
                                                                                 <label class="block font-medium text-secondary-700 dark:text-secondary-400">Chọn
                                                                                     nội dung cược :</label>
                                                                                 <div class="grid grid-cols-2 gap-4 mt-1">
-                                                                                    <div class="relative">
-                                                                                        <input id="gameTX_T" value="T" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
-                                                                                        <label for="gameTX_T" class="transition inline-flex peer-checked:hidden items-center w-full p-4 border-2 rounded-lg cursor-pointer group border-secondary-200/70 bg-white text-secondary-600">
+                                                                                    <div class="game">
+                                                                                        <input id="gameMM_M1" value="M1" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
+                                                                                        <label for="gameMM_M1" class="transition inline-flex peer-checked:hidden items-center w-full p-4 border-2 rounded-lg cursor-pointer group border-secondary-200/70 bg-white text-secondary-600">
                                                                                             <div class="flex w-full flex-col justify-start gap-2">
                                                                                                 <div class="flex justify-between">
-                                                                                                    <div class="w-full font-bold">Tài</div>
-                                                                                                    <span class="font-bold ">x<?= $ratioTai["ratio"] ?></span>
-                                                                                                </div>
-                                                                                                <div class="w-full text-sm flex gap-2 opacity-60">
-                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
-                                                                                                        4
-                                                                                                    </span>
-                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
-                                                                                                        5
-                                                                                                    </span>
-                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
-                                                                                                        6
-                                                                                                    </span>
-
-
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </label>
-                                                                                    </div>
-
-                                                                                    <div class="relative">
-                                                                                        <input id="gameTX_X" value="X" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
-                                                                                        <label for="gameTX_X" class="transition inline-flex peer-checked:hidden items-center w-full p-4 border-2 rounded-lg cursor-pointer group border-secondary-200/70 bg-white text-secondary-600">
-                                                                                            <div class="flex w-full flex-col justify-start gap-2">
-                                                                                                <div class="flex justify-between">
-                                                                                                    <div class="w-full font-bold">Xỉu</div>
-                                                                                                    <span class="font-bold">x<?= $ratioXiu["ratio"] ?></span>
+                                                                                                    <div class="w-full font-bold">May Mắn 1</div>
+                                                                                                    <span class="font-bold ">x<?= $ratioMM1["ratio"] ?></span>
                                                                                                 </div>
                                                                                                 <div class="w-full text-sm flex gap-2 opacity-60">
                                                                                                     <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
@@ -202,7 +226,62 @@
                                                                                                     <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
                                                                                                         3
                                                                                                     </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        4
+                                                                                                    </span>
 
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+
+                                                                                    <div class="game">
+                                                                                        <input id="gameMM_M2" value="M2" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
+                                                                                        <label for="gameMM_M2" class="transition inline-flex peer-checked:hidden items-center w-full p-4 border-2 rounded-lg cursor-pointer group border-secondary-200/70 bg-white text-secondary-600">
+                                                                                            <div class="flex w-full flex-col justify-start gap-2">
+                                                                                                <div class="flex justify-between">
+                                                                                                    <div class="w-full font-bold">May Mắn 2</div>
+                                                                                                    <span class="font-bold">x<?= $ratioMM2["ratio"] ?></span>
+                                                                                                </div>
+                                                                                                <div class="w-full text-sm flex gap-2 opacity-60">
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        2
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        3
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        5
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        6
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="game">
+                                                                                        <input id="gameMM_M3" value="M3" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
+                                                                                        <label for="gameMM_M3" class="transition inline-flex peer-checked:hidden items-center w-full p-4 border-2 rounded-lg cursor-pointer group border-secondary-200/70 bg-white text-secondary-600">
+                                                                                            <div class="flex w-full flex-col justify-start gap-2">
+                                                                                                <div class="flex justify-between">
+                                                                                                    <div class="w-full font-bold">May Mắn 3</div>
+                                                                                                    <span class="font-bold">x<?= $ratioMM3["ratio"] ?></span>
+                                                                                                </div>
+                                                                                                <div class="w-full text-sm flex gap-2 opacity-60">
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        3
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        4
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        5
+                                                                                                    </span>
+                                                                                                    <span class="outline-none inline-flex justify-center items-center group rounded-full w-6 h-6 text-white bg-secondary-500 dark:bg-secondary-700">
+                                                                                                        6
+                                                                                                    </span>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </label>
@@ -219,24 +298,6 @@
                                                                             <span class="flex items-center">
                                                                                 <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2" icon="heroicons-outline:newspaper"></iconify-icon>
                                                                                 <span>XÁC NHẬN ĐẶT CƯỢC</span>
-                                                                            </span>
-                                                                        </button>
-                                                                    </center>
-                                                                </div>
-                                                                <!-- tab game GIFTCODE-->
-                                                                <div class="tab-pane fade" id="ma-giftCode" role="tabpanel" aria-labelledby="pills-settings-tabHorizontal">
-
-                                                                    <h5 class="text-center">💸 Nhập Mã Giftcode 💸</h5>
-                                                                    <div class="input-area">
-
-                                                                        <input id="giftcode" type="text" class="form-control !text-lg" placeholder="Mã code nhận được từ event">
-                                                                    </div>
-                                                                    <hr class="my-5">
-                                                                    <center>
-                                                                        <button data-url="/api/giftcode" id="submitButtonAjax" class="submitButtonGiftCode btn inline-flex justify-center btn-primary rounded-[25px]">
-                                                                            <span class="flex items-center">
-                                                                                <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2" icon="heroicons-outline:newspaper"></iconify-icon>
-                                                                                <span>XÁC NHẬN</span>
                                                                             </span>
                                                                         </button>
                                                                     </center>
@@ -268,7 +329,10 @@
                                                                 </li>
 
                                                                 <li class="nav-item text-center" role="presentation">
-                                                                    <button href="#pills-settingsHorizontal" class="nav-link block btn inline-flex justify-center btn-danger btn-sm" id="pills-settings-tabHorizontal" data-bs-toggle="pill" data-bs-target="#lich-su-giftcode" role="tab" aria-controls="lich-su-giftcode" aria-selected="false">Nhiệm Vụ Ngày</a>
+                                                                    <button href="#pills-settingsHorizontal" class="nav-link block btn inline-flex justify-center btn-danger btn-sm" id="pills-settings-tabHorizontal" data-bs-toggle="pill" data-bs-target="#nhiem-vu-ngay" role="tab" aria-controls="nhiem-vu-ngay" aria-selected="false">Nhiệm Vụ Ngày</a>
+                                                                </li>
+                                                                <li class="nav-item text-center" role="presentation">
+                                                                    <button href="#pills-settingsHorizontal" class="nav-link block btn inline-flex justify-center btn-danger btn-sm" id="pills-settings-tabHorizontal" data-bs-toggle="pill" data-bs-target="#gioi-thieu" role="tab" aria-controls="gioi-thieu" aria-selected="false">giới thiệu bạn bè</a>
                                                                 </li>
                                                             </ul>
                                                             <hr class="my-3">
@@ -314,8 +378,8 @@
                                                                                                     <?php foreach ($getPlayByUsername as $getPlayByUsernames) { ?>
                                                                                                         <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
                                                                                                             <td class="table-td"><?= $getPlayByUsernames["game"] ?></td>
-                                                                                                            <td class="table-td"><?= $getPlayByUsernames["trand_id"] ?></td>
-                                                                                                            <td class="table-td"><?= $getPlayByUsernames["comment"] ?></td>
+                                                                                                            <td class="table-td"><?= $getPlayByUsernames["trand_id"] ?><iconify-icon class="copyText" icon="material-symbols-light:content-copy-sharp" data-clipboard-text="<?= $getPlayByUsernames["trand_id"] ?>"></iconify-icon></td>
+                                                                                                            <td class=" table-td"><?= $getPlayByUsernames["comment"] ?></td>
                                                                                                             <td class="table-td"><?= customNumberFormat($getPlayByUsernames["amount"]) ?></td>
                                                                                                             <td class="table-td"><?= customNumberFormat($getPlayByUsernames["received_amount"]) ?></td>
                                                                                                             <td class="table-td"><?= statusPlayGame($getPlayByUsernames["status"]) ?></td>
@@ -335,8 +399,17 @@
 
 
                                                                 <!-- tab Nhiệm vụ ngày-->
-                                                                <div class="tab-pane fade" id="lich-su-giftcode" role="tabpanel" aria-labelledby="pills-settings-tabHorizontal">
-                                                                    <p><strong>Nhiệm Vụ Ngày</strong></p>
+                                                                <div class="tab-pane fade" id="nhiem-vu-ngay" role="tabpanel" aria-labelledby="pills-settings-tabHorizontal">
+
+                                                                    <div class="alert alert-danger alert-dismissible alert-outline fade show" role="alert">
+                                                                        <strong>🔥 CHƠI CÀNG NHIỀU NHẬN CÀNG TO 🔥</strong>
+                                                                    </div>
+                                                                    <br>
+                                                                    <center><button class="diemdanhNVHN btn inline-flex justify-center btn-primary" data-csrf="<?= $csrf_token ?>">
+                                                                            <iconify-icon class="text-xl spin-slow ltr:mr-2 rtl:ml-2 relative top-[1px]" icon="line-md:loading-twotone-loop"></iconify-icon>
+                                                                            <span>Nhận Thưởng ngay</span>
+                                                                        </button></center>
+                                                                    <br>
                                                                     <div class="card">
                                                                         <div class="card-body px-6 pb-6">
                                                                             <div class="overflow-x-auto -mx-6">
@@ -346,26 +419,27 @@
                                                                                             <thead class="bg-slate-200 dark:bg-slate-700">
                                                                                                 <tr>
                                                                                                     <th scope="col" class=" table-th " style="text-align: center;">
-                                                                                                        Mã Giftcode
+                                                                                                        Mốc
                                                                                                     </th>
 
                                                                                                     <th scope="col" class=" table-th " style="text-align: center;">
-                                                                                                        Quà tặng
+                                                                                                        Xu Cược Tối Thiểu
                                                                                                     </th>
 
                                                                                                     <th scope="col" class=" table-th " style="text-align: center;">
-                                                                                                        Thời Gian
+                                                                                                        Thưởng
                                                                                                     </th>
-
-
                                                                                                 </tr>
                                                                                             </thead>
                                                                                             <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                                                                                <?php foreach ($lisrReward as $key => $lisrRewards) { ?>
+                                                                                                    <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
+                                                                                                        <td class="table-td"><?= $lisrRewards["id"] ?></td>
 
-                                                                                                <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
-                                                                                                    <td class="table-td">123123</td>
-
-                                                                                                </tr>
+                                                                                                        <td class="table-td"><?= customNumberFormat($lisrRewards["min"]) ?></td>
+                                                                                                        <td class="table-td"><?= customNumberFormat($lisrRewards["reward"]) ?></td>
+                                                                                                    </tr>
+                                                                                                <?php  } ?>
                                                                                             </tbody>
                                                                                         </table>
                                                                                     </div>
@@ -386,7 +460,7 @@
 
                                     </div>
 
-                                    <div class="xl:col-span-6 col-span-12">
+                                    <div class="xl:col-span-12 col-span-12">
                                         <div class="card ">
                                             <div class="items-center text-center p-5">
                                                 <h3 class="card-title text-slate-900 dark:text-white">LỊCH SỬ ĐẶT CƯỢC</h3>
@@ -539,6 +613,30 @@
                         console.log("Lỗi: " + error);
                     }
                 });
+            });
+
+            $(".diemdanhNVHN").on("click", function() {
+                $.ajax({
+                    url: "api/nvhn",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        csrf_token: $(this).data('csrf'),
+                    },
+                    beforeSend: function() {
+                        $(".diemdanhNVHN").prop("disabled", true).html('Đang xử lý...');
+                    },
+                    complete: function() {
+                        $(".diemdanhNVHN").prop("disabled", false).html('ĐIỂM DANH NGAY');
+                    },
+                    success: function(data) {
+                        if (data.status == 'error') {
+                            Swal.fire('Thông Báo', data.msg, data.status);
+                        } else {
+                            Swal.fire('Thông Báo', data.msg, data.status);
+                        }
+                    }
+                })
             });
         });
 

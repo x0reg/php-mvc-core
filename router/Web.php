@@ -26,7 +26,7 @@ $router->addRoute('POST', '/api/play-game', ['HandleGame', 'submitPlayGame']);
 $router->addRoute('GET', '/recharge', ['XuLyGiaoDich', 'recharge']);
 $router->addRoute('POST', '/api/recharge', ['XuLyGiaoDich', 'submitRecharge']);
 $router->addRoute('GET', '/withdraw', ['XuLyGiaoDich', 'withdraw']);
-
+$router->addRoute('POST', '/api/nvhn', ['HomeController', 'diemDanhNVHN']);
 
 ////admin
 $router->addRoute('GET', '/admin/dashboard', ['AdminController', 'dashboard']);

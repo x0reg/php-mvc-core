@@ -16,10 +16,10 @@ class AdminModel extends AppQuery
         }
     }
 
-    public function getToltalAmoutRechargeToday()
+    public function getToltalAmoutRechargeToday($today)
     {
         try {
-            $today = date("Y-m-d");
+            // $today = date("Y-m-d");
             $stmt = $this->pdo->prepare("SELECT SUM(money) as total_money FROM history_bank WHERE DATE(time) = :today");
             $stmt->bindParam(':today', $today, PDO::PARAM_STR);
             $stmt->execute();
@@ -30,10 +30,10 @@ class AdminModel extends AppQuery
         }
     }
 
-    public function getToltalAmoutWithDrawToday()
+    public function getToltalAmoutWithDrawToday($today)
     {
         try {
-            $today = date("Y-m-d");
+            // $today = date("Y-m-d");
             $stmt = $this->pdo->prepare("SELECT SUM(money) as total_money FROM lichsuruttien WHERE DATE(time) = :today");
             $stmt->bindParam(':today', $today, PDO::PARAM_STR);
             $stmt->execute();
@@ -44,11 +44,11 @@ class AdminModel extends AppQuery
         }
     }
 
-    public function getTotalAmountNVHN()
+    public function getTotalAmountNVHN($today)
     {
         try {
-            $today = date("Y-m-d");
-            $stmt = $this->pdo->prepare("SELECT SUM(amount) as total_money FROM diemdanh_nvhn WHERE DATE(created_at) = :today");
+            // $today = date("Y-m-d");
+            $stmt = $this->pdo->prepare("SELECT SUM(amount) as total_money FROM z_history_nvhn WHERE DATE(created_at) = :today");
             $stmt->bindParam(':today', $today, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -82,12 +82,10 @@ class AdminModel extends AppQuery
         }
     }
 
-    public function getTotalAmountRechargeWeek()
+    public function getTotalAmountRechargeWeek($startOfWeek, $endOfWeek)
     {
         try {
             // Lấy ngày bắt đầu và kết thúc của tuần này
-            $startOfWeek = date("Y-m-d", strtotime("monday this week"));
-            $endOfWeek = date("Y-m-d", strtotime("sunday this week"));
             $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM history_bank WHERE time >= :startOfWeek AND time <= :endOfWeek");
             $stmt->bindParam(':startOfWeek', $startOfWeek);
             $stmt->bindParam(':endOfWeek', $endOfWeek);
@@ -99,12 +97,12 @@ class AdminModel extends AppQuery
             return 0;
         }
     }
-    public function getTotalAmountWithDrawWeek()
+    public function getTotalAmountWithDrawWeek($startOfWeek, $endOfWeek)
     {
         try {
             // Lấy ngày bắt đầu và kết thúc của tuần này
-            $startOfWeek = date("Y-m-d", strtotime("monday this week"));
-            $endOfWeek = date("Y-m-d", strtotime("sunday this week"));
+            // $startOfWeek = date("Y-m-d", strtotime("monday this week"));
+            // $endOfWeek = date("Y-m-d", strtotime("sunday this week"));
             $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM lichsuruttien WHERE DATE(time) >= :startOfWeek AND DATE(time) <= :endOfWeek");
             $stmt->bindParam(':startOfWeek', $startOfWeek);
             $stmt->bindParam(':endOfWeek', $endOfWeek);
@@ -117,13 +115,13 @@ class AdminModel extends AppQuery
         }
     }
 
-    public function getTotalAmountNVHNWeek()
+    public function getTotalAmountNVHNWeek($startOfWeek, $endOfWeek)
     {
         try {
             // Lấy ngày bắt đầu và kết thúc của tuần này
-            $startOfWeek = date("Y-m-d", strtotime("monday this week"));
-            $endOfWeek = date("Y-m-d", strtotime("sunday this week"));
-            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(amount), 0) as total_money FROM diemdanh_nvhn WHERE DATE(created_at) >= :startOfWeek AND DATE(created_at) <= :endOfWeek");
+            // $startOfWeek = date("Y-m-d", strtotime("monday this week"));
+            // $endOfWeek = date("Y-m-d", strtotime("sunday this week"));
+            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(amount), 0) as total_money FROM z_history_nvhn WHERE DATE(created_at) >= :startOfWeek AND DATE(created_at) <= :endOfWeek");
             $stmt->bindParam(':startOfWeek', $startOfWeek);
             $stmt->bindParam(':endOfWeek', $endOfWeek);
             $stmt->execute();
@@ -135,12 +133,12 @@ class AdminModel extends AppQuery
         }
     }
 
-    public function getTotalAmountRechargeMonth()
+    public function getTotalAmountRechargeMonth($startOfMonth, $endOfMonth)
     {
         try {
             // Lấy ngày bắt đầu và kết thúc của tháng này
-            $startOfMonth = date("Y-m-01");
-            $endOfMonth = date("Y-m-t");
+            // $startOfMonth = date("Y-m-01");
+            // $endOfMonth = date("Y-m-t");
             $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM history_bank WHERE time >= :startOfMonth AND time <= :endOfMonth");
             $stmt->bindParam(':startOfMonth', $startOfMonth);
             $stmt->bindParam(':endOfMonth', $endOfMonth);
@@ -152,12 +150,12 @@ class AdminModel extends AppQuery
             return 0;
         }
     }
-    public function getTotalAmountWithdrawMonth()
+    public function getTotalAmountWithdrawMonth($startOfMonth, $endOfMonth)
     {
         try {
             // Lấy ngày bắt đầu và kết thúc của tháng này
-            $startOfMonth = date("Y-m-01");
-            $endOfMonth = date("Y-m-t");
+            // $startOfMonth = date("Y-m-01");
+            // $endOfMonth = date("Y-m-t");
             $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM lichsuruttien WHERE time >= :startOfMonth AND time <= :endOfMonth");
             $stmt->bindParam(':startOfMonth', $startOfMonth);
             $stmt->bindParam(':endOfMonth', $endOfMonth);
@@ -170,13 +168,13 @@ class AdminModel extends AppQuery
         }
     }
 
-    public function getTotalAmountNVHNMonth()
+    public function getTotalAmountNVHNMonth($startOfMonth, $endOfMonth)
     {
         try {
             // Lấy ngày bắt đầu và kết thúc của tuần này
-            $startOfMonth = date("Y-m-01");
-            $endOfMonth = date("Y-m-t");
-            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(amount), 0) as total_money FROM diemdanh_nvhn WHERE DATE(created_at) >= :startOfMonth AND DATE(created_at) <= :endOfMonth");
+            // $startOfMonth = date("Y-m-01");
+            // $endOfMonth = date("Y-m-t");
+            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(amount), 0) as total_money FROM z_history_nvhn WHERE DATE(created_at) >= :startOfMonth AND DATE(created_at) <= :endOfMonth");
             $stmt->bindParam(':startOfMonth', $startOfMonth);
             $stmt->bindParam(':endOfMonth', $endOfMonth);
             $stmt->execute();

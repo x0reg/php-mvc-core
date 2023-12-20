@@ -37,7 +37,7 @@
                             <div class="card">
                                 <div class="card-header border-0">
 
-                                    <h3 class="card-title">Thống Kê Tháng này <?= date("m") ?></h3>
+                                    <h3 class="card-title">Thống Kê Tháng trước / Tháng này</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
@@ -46,7 +46,7 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($getTotalAmountRechargeMonth) ?> xu
+                                                <?= customNumberFormat($getTotalAmountRechargeMonththangtruoc) ?>/ <?= customNumberFormat($getTotalAmountRechargeMonth) ?> xu
                                             </span>
                                             <span class="text-muted">Tổng Tiền Đã Nhận</span>
                                         </p>
@@ -58,11 +58,11 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($getTotalAmountWithdrawMonth) ?>
+                                                <?= customNumberFormat($getTotalAmountWithdrawMonththangtruoc) ?> / <?= customNumberFormat($getTotalAmountWithdrawMonth) ?> xu
                                             </span>
                                             <span class="text-muted">Tổng Tiền Đã Trả</span>
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($getTotalAmountNVHNMonth) ?>
+                                                <?= customNumberFormat($getTotalAmountNVHNMonththangtruoc) ?>/<?= customNumberFormat($getTotalAmountNVHNMonth) ?> xu
                                             </span>
                                             <span class="text-muted">Xu Trả NVHN</span>
                                         </p>
@@ -74,9 +74,9 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($doanhthumonth) ?>
+                                                <?= customNumberFormat($doanhthumonththangtruoc) ?> / <?= customNumberFormat($doanhthumonth) ?> xu
                                             </span>
-                                            <span class="text-muted">Doanh Thu Tháng</span>
+                                            <span class="text-muted">Doanh Thu</span>
                                         </p>
                                     </div>
                                     <!-- /.d-flex -->
@@ -86,7 +86,7 @@
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-header border-0">
-                                    <h3 class="card-title">Thống Kê Tuần này</h3>
+                                    <h3 class="card-title">Thống Kê Tuần Trước / Tuần này</h3>
 
                                 </div>
                                 <div class="card-body">
@@ -96,7 +96,7 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($getTotalAmountRechargeWeek) ?>
+                                                <?= customNumberFormat($getTotalAmountRechargeWeektuantruoc) ?>/<?= customNumberFormat($getTotalAmountRechargeWeek) ?>
                                             </span>
                                             <span class="text-muted">Tổng Xu Đã Nhận</span>
                                         </p>
@@ -108,11 +108,11 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($getTotalAmountWithDrawWeek) ?> xu
+                                                <?= customNumberFormat($getTotalAmountWithDrawWeektuantruoc) ?>/ <?= customNumberFormat($getTotalAmountWithDrawWeek) ?> xu
                                             </span>
                                             <span class="text-muted">Tổng Xu đã rút</span>
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($getTotalAmountNVHNWeek) ?> xu
+                                                <?= customNumberFormat($getTotalAmountNVHNWeektuantruoc) ?> /<?= customNumberFormat($getTotalAmountNVHNWeek) ?> xu
                                             </span>
                                             <span class="text-muted">Xu trả NVHN</span>
                                         </p>
@@ -124,9 +124,9 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($doanhthutuan) ?> xu
+                                                <?= customNumberFormat($doanhthutuantruoc) ?>/ <?= customNumberFormat($doanhthutuan) ?> xu
                                             </span>
-                                            <span class="text-muted">Doanh Thu Tuần</span>
+                                            <span class="text-muted">Doanh Thu</span>
                                         </p>
                                     </div>
                                     <!-- /.d-flex -->
@@ -136,7 +136,7 @@
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-header border-0">
-                                    <h3 class="card-title">Thống Kê Hôm Nay</h3>
+                                    <h3 class="card-title">Thống Kê Hôm qua / Hôm Nay</h3>
                                     <div class="card-tools">
                                         <a href="#" class="btn btn-sm btn-tool">
                                             <i class="fas fa-download"></i>
@@ -153,9 +153,9 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($totalAmoutRecharge) ?> xu
+                                                <?= customNumberFormat($totalAmoutRechargengaytruoc) ?> /<?= customNumberFormat($totalAmoutRecharge) ?> xu
                                             </span>
-                                            <span class="text-muted">Tổng Nhận Hôm Nay</span>
+                                            <span class="text-muted">Tổng Nhận</span>
                                         </p>
                                     </div>
                                     <!-- /.d-flex -->
@@ -165,11 +165,11 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($totalAmountWithDraw) ?> xu
+                                                <?= customNumberFormat($totalAmountWithDrawngaytruoc) ?>/<?= customNumberFormat($totalAmountWithDraw) ?> xu
                                             </span>
-                                            <span class="text-muted">Tổng Rút Hôm Nay</span>
+                                            <span class="text-muted">Tổng Rút</span>
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($getTotalAmountNVHN) ?> xu
+                                                <?= customNumberFormat($getTotalAmountNVHNngaytruoc) ?>/<?= customNumberFormat($getTotalAmountNVHN) ?> xu
                                             </span>
                                             <span class="text-muted">Xu Trả Nhiệm Vụ</span>
                                         </p>
@@ -181,9 +181,9 @@
                                         </p>
                                         <p class="d-flex flex-column text-right">
                                             <span class="font-weight-bold">
-                                                <?= customNumberFormat($doanhthutoday) ?>
+                                                <?= customNumberFormat($doanhthutodayngaytruoc) ?> / <?= customNumberFormat($doanhthutoday) ?> xu
                                             </span>
-                                            <span class="text-muted">Doanh Thu Ngày</span>
+                                            <span class="text-muted">Doanh Thu</span>
                                         </p>
                                     </div>
                                     <!-- /.d-flex -->
