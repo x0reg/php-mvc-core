@@ -10,14 +10,18 @@ require_once(__DIR__ . "/../controller/HandleGame.php");
 require_once(__DIR__ . "/../controller/XuLyGiaoDich.php");
 require_once(__DIR__ . "/../controller/AdminController.php");
 require_once(__DIR__ . "/../model/AdminModel.php");
+require_once(__DIR__ . "/../model/BankModel.php");
 
 $router = new Routers;
 $db = new ConnectionDB();
 
 
 $router->addRoute('GET', '/a', ['BaseController', 'decryptData']);
+
 $router->addRoute('GET', '/auth/login', ['AuthController', 'login']);
 $router->addRoute('POST', '/api/login', ['AuthController', 'hanldeLogin']);
+$router->addRoute('GET', '/auth/register', ['AuthController', 'register']);
+$router->addRoute('POST', '/api/register', ['AuthController', 'hanldeRegister']);
 $router->addRoute("GET", "/logout", ['AuthController', 'logout']);
 $router->addRoute('GET', '/', ['HomeController', 'index']);
 $router->addRoute('GET', '/profile', ['UserController', 'profile']);
@@ -26,6 +30,7 @@ $router->addRoute('POST', '/api/play-game', ['HandleGame', 'submitPlayGame']);
 $router->addRoute('GET', '/recharge', ['XuLyGiaoDich', 'recharge']);
 $router->addRoute('POST', '/api/recharge', ['XuLyGiaoDich', 'submitRecharge']);
 $router->addRoute('GET', '/withdraw', ['XuLyGiaoDich', 'withdraw']);
+$router->addRoute('POST', '/api/withdraw', ['XuLyGiaoDich', 'submitWithdraw']);
 $router->addRoute('POST', '/api/nvhn', ['HomeController', 'diemDanhNVHN']);
 
 ////admin

@@ -378,7 +378,7 @@
                                                                                                     <?php foreach ($getPlayByUsername as $getPlayByUsernames) { ?>
                                                                                                         <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
                                                                                                             <td class="table-td"><?= $getPlayByUsernames["game"] ?></td>
-                                                                                                            <td class="table-td"><?= $getPlayByUsernames["trand_id"] ?><iconify-icon class="copyText" icon="material-symbols-light:content-copy-sharp" data-clipboard-text="<?= $getPlayByUsernames["trand_id"] ?>"></iconify-icon></td>
+                                                                                                            <td class="table-td"><?= $getPlayByUsernames["trand_id"] ?><iconify-icon class="copyText text-xl ltr:mr-2 rtl:ml-2" icon="material-symbols:content-copy" data-clipboard-text="<?= $getPlayByUsernames["trand_id"] ?>"></iconify-icon></td>
                                                                                                             <td class=" table-td"><?= $getPlayByUsernames["comment"] ?></td>
                                                                                                             <td class="table-td"><?= customNumberFormat($getPlayByUsernames["amount"]) ?></td>
                                                                                                             <td class="table-td"><?= customNumberFormat($getPlayByUsernames["received_amount"]) ?></td>
@@ -448,6 +448,52 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <!-- tab giới thiệu bạn bè-->
+                                                                <div class="tab-pane fade" id="gioi-thieu" role="tabpanel" aria-labelledby="pills-settings-tabHorizontal">
+
+                                                                    <div class="alert alert-danger alert-dismissible alert-outline fade show" role="alert">
+                                                                        <strong>🔥 MỜI BẠN BÈ SAU 🔥</strong>
+                                                                    </div>
+                                                                    <br>
+                                                                    <center><button class="copyText btn inline-flex justify-center btn-primary" data-clipboard-text="https://vuabem.com/auth/register?ref_user=<?= getSessionUser() ?>">
+                                                                            <span>COPY LINK MỜI</span>
+                                                                        </button></center>
+                                                                    <br>
+                                                                    <div class=" card">
+                                                                        <div class="card-body px-6 pb-6">
+                                                                            <div class="overflow-x-auto -mx-6">
+                                                                                <div class="inline-block min-w-full align-middle">
+                                                                                    <div class="overflow-hidden ">
+                                                                                        <table class="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700">
+                                                                                            <thead class="bg-slate-200 dark:bg-slate-700">
+                                                                                                <tr>
+                                                                                                    <th scope="col" class=" table-th " style="text-align: center;">
+                                                                                                        User Mời
+                                                                                                    </th>
+
+                                                                                                    <th scope="col" class=" table-th " style="text-align: center;">
+                                                                                                        Tiền Nhận
+                                                                                                    </th>
+
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                                                                                <?php foreach ($bonus as $key => $bonuss) { ?>
+                                                                                                    <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
+                                                                                                        <td class="table-td"><?= $bonuss["user_play"] ?></td>
+
+                                                                                                        <td class="table-td"><?= customNumberFormat($bonuss["money"]) ?></td>
+
+                                                                                                    </tr>
+                                                                                                <?php  } ?>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
 
                                                             </div>
@@ -496,7 +542,7 @@
 
                                                                             </tr>
                                                                         </thead>
-                                                                        <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                                                        <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700" style="text-align: center;">
                                                                             <?php foreach ($getAllDataHistory as $key => $getAllDataHistorys) { ?>
                                                                                 <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
                                                                                     <td class="table-td"><?= catUsername($getAllDataHistorys["username"]) ?></td>

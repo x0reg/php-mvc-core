@@ -30,7 +30,7 @@ class HomeController extends BaseController
         $getPlayByUsername = $this->historyPlay->getPlayerByUsername(getSessionUser());
         $getAllDataHistory = $this->historyPlay->getAllDataHistory();
         $lisrReward = $this->historyPlay->getReward();
-
+        $bonus = $this->historyPlay->getUserBonus(getSessionUser());
         ///tạo CSRF
         $csrf_token = JWT::encode([
             "iat" => time(),

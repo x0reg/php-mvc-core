@@ -285,7 +285,7 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-
+                                                <th>#</th>
                                                 <th>Username</th>
                                                 <th>Game</th>
                                                 <th>MGD</th>
@@ -299,7 +299,7 @@
                                         <tbody>
                                             <?php foreach ($getAllDataHistory as $key => $getAllDataHistorys) { ?>
                                                 <tr>
-
+                                                    <td><?= $getAllDataHistorys["id"] ?></td>
                                                     <td><?= $getAllDataHistorys["username"] ?></td>
                                                     <td><?= $getAllDataHistorys["game"] ?></td>
                                                     <td><?= $getAllDataHistorys["trand_id"] ?></td>

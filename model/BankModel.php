@@ -35,4 +35,13 @@ class BankModel extends AppQuery
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows[0];
     }
+
+    public function getListWithDraw($username)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM lichsuruttien WHERE username = :username ORDER BY id DESC LIMIT 5");
+        $stmt->bindParam("username", $username);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

@@ -142,6 +142,15 @@ function statusPlayGame($stt)
         case 'lose':
             return '<span class="badge bg-danger-500 text-white capitalize pill">thua cuộc</span>';
             break;
+        case 'xuli':
+            return '<span class="badge bg-warning-500 text-white capitalize pill">Đang xử lý</span>';
+            break;
+        case 'thanhcong':
+            return '<span class="badge bg-success-500 text-white capitalize pill">thành công</span>';
+            break;
+        case 'thatbai':
+            return '<span class="badge bg-danger-500 text-white capitalize pill">thất bại</span>';
+            break;
         default:
             return "<span class='badge badge-warning'>No Case</span>";
             break;
@@ -194,5 +203,35 @@ function customDate($days)
         default:
             return "CASE ERROR";
             break;
+    }
+    function generateRandomPhoneNumber()
+    {
+        // Mảng chứa đầu số của các nhà mạng
+        $networkPrefixes = [
+            '086', '096', '097', '098', '032', '033', '034', '035', '036', '037', '038', '039', // Viettel
+            '088', '091', '094', '083', '084', '085', // Vinaphone
+            '089', '090', '093', '070', '079', '077', '076', '078', // Mobifone
+            '092', '056', '058', // Vietnamobile
+            '099', '059' // Gmobile (G Viet)
+        ];
+
+        // Chọn ngẫu nhiên một đầu số từ mảng
+        $randomPrefix = $networkPrefixes[array_rand($networkPrefixes)];
+        $randomNumber = sprintf("%07d", mt_rand(0, 99999999999999999));
+
+        // Kết hợp đầu số và số còn lại để tạo số điện thoại hoàn chỉnh
+        $phoneNumber = $randomPrefix . $randomNumber;
+
+        return $phoneNumber;
+    }
+
+    function statusWithDraw($stt)
+    {
+        switch ($stt) {
+
+            default:
+                return "<span class='badge badge-warning'>No Case</span>";
+                break;
+        }
     }
 }

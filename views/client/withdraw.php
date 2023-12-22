@@ -28,22 +28,23 @@
                                                     <div class="card-title text-slate-900 dark:text-white">Rút Xu Tự Động</div>
                                                 </div>
                                             </header>
-                                            <div class="card-text h-full space-y-4">
-                                                <div class="input-area">
-                                                    Nhập STK nhận tiền :
-                                                    <div class="relative">
-                                                        <input type="text" name="account_number" class="form-control !pr-12" value="">
+                                            <form action="/api/withdraw" method="post" id="ajaxSubmitForm">
+                                                <div class="card-text h-full space-y-4">
+                                                    <div class="input-area">
+                                                        Nhập STK nhận tiền :
+                                                        <div class="relative">
+                                                            <input type="text" name="account_number" class="form-control !pr-12" value="">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="input-area">
-                                                    Nhập số Xu muốn rút :
-                                                    <div class="relative">
-                                                        <input type="text" name="amount" class="form-control !pr-12" value="">
+                                                    <div class="input-area">
+                                                        Nhập số Xu muốn rút :
+                                                        <div class="relative">
+                                                            <input type="text" name="amount" id="sotien" oninput="num()" class="form-control !pr-12" value="">
+                                                        </div>
                                                     </div>
+                                                    <button type="submit" class="btn inline-flex justify-center btn-dark">XÁC NHẬN</button>
                                                 </div>
-
-                                                <button type="submit" class="btn inline-flex justify-center btn-dark">XÁC NHẬN</button>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
 
@@ -67,9 +68,6 @@
                                                                                     <th scope="col" class=" table-th " style="text-align: center;">
                                                                                         MGD
                                                                                     </th>
-                                                                                    <th scope="col" class=" table-th " style="text-align: center;">
-                                                                                        Nội dung
-                                                                                    </th>
 
                                                                                     <th scope="col" class=" table-th " style="text-align: center;">
                                                                                         Số tiền
@@ -77,16 +75,22 @@
                                                                                     <th scope="col" class=" table-th " style="text-align: center;">
                                                                                         Thời gian
                                                                                     </th>
+                                                                                    <th scope="col" class=" table-th " style="text-align: center;">
+                                                                                        Trạng Thái
+                                                                                    </th>
+
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
+                                                                                <?php foreach ($history as $key => $historys) { ?>
+                                                                                    <tr class="hover:bg-slate-200 dark:hover:bg-slate-700" style="text-align: center;">
+                                                                                        <td class="table-td"><?= $historys["trans_id"] ?></td>
+                                                                                        <td class="table-td"> <?= customNumberFormat($historys["money"]) ?></td>
+                                                                                        <td class="table-td"> <?= $historys["time"] ?></td>
+                                                                                        <td class="table-td"><?= statusPlayGame($historys["status"]) ?></td>
+                                                                                    </tr>
+                                                                                <?php  } ?>
 
-                                                                                <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
-                                                                                    <td class="table-td"></td>
-                                                                                    <td class="table-td"></td>
-                                                                                    <td class="table-td"> </td>
-                                                                                    <td class="table-td"> </td>
-                                                                                </tr>
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -117,6 +121,7 @@
         </div>
     </main>
     <?php include_once(__DIR__ . "/layout/footer.php"); ?>
+    <!-- <script src="/public/js/ajax.js"></script> -->
 </body>
 <script>
     function num() {
@@ -126,35 +131,6 @@
         var formattedValue = Number(numericValue).toLocaleString();
         input.value = formattedValue;
     }
-    $(document).ready(function() {
-        $("#napxu").on("click", function() {
-            $.ajax({
-                method: "POST",
-                url: "/api/recharge",
-                data: {
-                    amount: $("#sotien").val()
-                },
-                beforeSend: function() {
-                    $("#napxu").prop("disabled", true).html("Đang Xử lý...")
-                },
-                complete: function() {
-                    $("#napxu").prop("disabled", false).html("Xác Nhận")
-                },
-                success: function(data) {
-                    if (data.status == "success") {
-                        $('#exampleModal').modal('show');
-                        $('#noidungnap').html(data.html);
-                    } else {
-                        Swal.fire("Thất Bại", data.message, "error")
-                    }
-                },
-                error: function(err) {
-                    console.log(err.responseJSON.message);
-                    Swal.fire("Thất Bại", err.responseJSON.message, "error")
-                }
-            })
-        })
-    })
 </script>
 
 </html>

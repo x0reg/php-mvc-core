@@ -19,6 +19,9 @@ class Routers
             $pattern = $this->buildPattern($route['uriPattern']);
             if ($route['method'] == strtoupper($method) && preg_match($pattern, $uri, $matches)) {
                 array_shift($matches); // Loại bỏ phần tử đầu tiên (toàn bộ dòng URL)
+                if (isset($_GET['user'])) {
+                    $matches['user'] = $_GET['user'];
+                }
                 if (is_array($route['handler'])) {
                     list($className, $methodName) = $route['handler'];
                     $controller = new $className();

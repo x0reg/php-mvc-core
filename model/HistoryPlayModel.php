@@ -92,4 +92,18 @@ class HistoryPlayModel extends AppQuery
             return 0;
         }
     }
+
+    public function getUserBonus($username)
+    {
+        try {
+            $statement = $this->pdo->prepare("SELECT * FROM lichsuhoahong WHERE username = :username ORDER BY id DESC LIMIT 6");
+            $statement->bindParam(":username", $username);
+            $statement->execute();
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\Throwable $e) {
+            echo "Query ERROR: " . $e->getMessage();
+            return 0;
+        }
+    }
 }
