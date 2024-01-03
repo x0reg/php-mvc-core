@@ -10,6 +10,20 @@ class HistoryPlayModel extends AppQuery
         $this->insert($this->table, $data);
     }
 
+ public function insertHistoryPlay($username, $trand_id, $value_dice, $comment, $amount, $received_amount, $game, $status, $created_at)
+    {
+        return $this->insert("z_history_play", [
+            "username" => $username,
+            "trand_id" => $trand_id,
+            "value_dice" => $value_dice,
+            "comment" => $comment,
+            "amount" => $amount,
+            "received_amount" => $received_amount,
+            "game" => $game,
+            "status" => $status,
+            "created_at" => $created_at,
+        ]);
+    }
 
     public function getPlayerByUsername()
     {
@@ -32,7 +46,7 @@ class HistoryPlayModel extends AppQuery
 
     public function getAllDataHistory()
     {
-        $statement = $this->pdo->prepare("SELECT * FROM z_history_play ORDER BY id DESC LIMIT 10");
+        $statement = $this->pdo->prepare("SELECT * FROM z_history_play ORDER BY id DESC LIMIT 6");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -104,6 +118,34 @@ class HistoryPlayModel extends AppQuery
         } catch (\Throwable $e) {
             echo "Query ERROR: " . $e->getMessage();
             return 0;
+        }
+    }
+    
+     public function getTotalPlayToday($username)
+    {
+        try {
+            $today = date("Y-m-d");
+            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(amount), 0) as total_money FROM z_history_play WHERE username = :username AND DATE(created_at) = :today");
+            $stmt->bindParam(':today', $today);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['total_money'] ?  $result['total_money'] : 0;
+        } catch (PDOException $e) {
+            die("Querry ERRORR: " . $e->getMessage());
+        }
+    }
+
+    public function getMoc($amount)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM list_reward WHERE min <= :amount AND max > :amount");
+            $stmt->bindParam(":amount", $amount);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\Throwable $e) {
+            die("Querry ERRORR: " . $e->getMessage());
         }
     }
 }

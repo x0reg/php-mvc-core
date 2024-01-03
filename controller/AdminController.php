@@ -6,7 +6,7 @@ class AdminController extends BaseController
 
     public function __construct()
     {
-        if (getInfoUser("level") != 9) {
+        if (getInfoUser("level") != 3) {
             return redirect("/");
         }
     }
@@ -20,6 +20,11 @@ class AdminController extends BaseController
         $getTotalUserPlayToday = $admin->getTotalUserPlayToday();
 
         $getAllDataHistory = $admin->getAllDataHistory();
+        ///thống kê all
+        $getAllTongNhan = $admin->getAllTongNhan();
+        $getAllTongTra = $admin->getAllTongTra();
+        $allNVHN = $admin->getTotalNVHN();
+        $doanhthuall = $getAllTongNhan - $getAllTongTra - $allNVHN;
         ////thống kê hôm nay
         $totalAmoutRecharge = $admin->getToltalAmoutRechargeToday(date("Y-m-d"));
         $totalAmountWithDraw = $admin->getToltalAmoutWithDrawToday(date("Y-m-d"));

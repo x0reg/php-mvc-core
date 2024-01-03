@@ -1,0 +1,121 @@
+        .buttonEffect-glow1 {
+  border: 2px solid #00FFFF; /* Thêm viền màu xanh lam, độ dày 2px */
+  width: 250px;
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 4px #00FFFF; /* Đổi giá trị tạo hiệu ứng glow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Đảm bảo nằm chính giữa theo chiều ngang */
+}
+
+    .glow-on-hover {
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 36px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    margin: auto; /* Thêm dòng này */
+}
+
+.glow-on-hover:before {
+    content: '';
+background: linear-gradient(45deg, 
+    #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF,
+    #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF,
+    #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF,
+    #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF,
+    #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF);    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(10px);
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+  animation: glowing 5s linear infinite;
+  opacity: 1; /* Thay đổi giá trị opacity thành 1 */
+    transition: opacity .3s ease-in-out;
+    border-radius: 20px;
+}
+
+.glow-on-hover:active {
+    color: #000;
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+        0% { background-position: 200% 0; }
+        100% { background-position: 0 0; }
+}
+
+.hongmongmo_Diem_Danh {
+  background-color: #A50064;
+  color: white;
+  /*padding: 5px 25px;*/
+  border-radius: 5px;
+  text-decoration: none;
+  height: 40px;
+  width: 250px;
+  display: block;
+  margin: 0 auto; /* Đảm bảo nằm chính giữa theo chiều ngang */
+  text-align: center; /* Để căn giữa nội dung bên trong */
+  border-radius: 10px;
+}
+.table-th{
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1rem;
+  text-transform: none;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(71 85 105 / var(--tw-text-opacity));
+}
+.tinhve001 {
+  text-align: center; /* Căn giữa nội dung theo chiều ngang */
+  margin: 0 auto; /* Căn giữa phần tử theo chiều ngang bên trong phần tử cha */
+  border: 1px dashed rgb(226, 93, 219);
+  padding: 5px;
+  color: #004dff;
+  font-size: 15px;
+  padding-left: 25px; /* Thêm lề bên trái 20px */
+  height: 40px;
+  text-align: left !important;
+  padding-left: 15px !important;
+}
+.yellow-frame {
+    background-color: #FFD700;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    width: 160px;
+    height: 35px;
+    font-size: 15px;
+}

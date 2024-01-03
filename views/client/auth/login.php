@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>Đăng Nhập Thành Viên</title>
-    <link rel="icon" type="image/png" href="public/images/logo/favicon.svg">
+    <title></title>
+    <link rel="icon" type="image/png" href="public/images/logo/images.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
                 <div class="max-w-[520px] pt-20 ltr:pl-20 rtl:pr-20">
 
                     <h4>
-                        Đăng Nhập Thành Viên
+                        
                         <!-- <span class="text-slate-800 dark:text-slate-400 font-bold">
 							performance
 						</span> -->
@@ -53,8 +53,8 @@
                     <div class="auth-box h-full flex flex-col justify-center">
                         <div class="mobile-logo text-center mb-6 lg:hidden block">
                             <a href="/">
-                                <img src="/public/images/logo/logo.svg" alt="" class="mb-10 dark_logo">
-                                <img src="/public/images/logo/logo-white.svg" alt="" class="mb-10 white_logo">
+                                <img src="<?=Settings("logo") ?>" alt="" style="margin-left: 12px";  class="mb-10 dark_logo">
+                                <img src="<?=Settings("logo") ?>" alt="" class="mb-10 white_logo">
                             </a>
                         </div>
                         <div class="text-center 2xl:mb-10 mb-4">
@@ -85,9 +85,24 @@
                                 <b id="passwordError"></b>
                             </div>
 
-                            <button type="submit" class="btn btn-dark block w-full text-center">Đăng Nhập</button>
-                        </form>
+							<style>
+  @keyframes blink {
+    0% {opacity: 1;}
+    50% {opacity: 0.5;}
+    100% {opacity: 1;}
+  }
+  .mb {
+    font-size: 15px;
+    text-align: right;
+    color: #00f;
+}
 
+							</style>
+							
+                            <button type="submit" style="animation: blink 1s ease infinite;"class="btn btn-light w-full text-center">Đăng Nhập Ngay</button>
+                        </form>
+						<p style="height: 10px;"></p>
+						<a class="mb" href="<?php echo $_ENV['chatadmin']; ?>" ><b>Quên mật khẩu?</b></a>	
                     </div>
 
                 </div>

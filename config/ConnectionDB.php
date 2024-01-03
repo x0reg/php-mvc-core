@@ -13,7 +13,7 @@ class ConnectionDB
         $password = $_ENV['DB_PASSWORD'];
         // Tạo kết nối PDO
         try {
-            $this->pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $this->pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // echo "Connected successfully";
         } catch (PDOException $e) {

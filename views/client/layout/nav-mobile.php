@@ -18,14 +18,14 @@
             <img src="https://i.imgur.com/MzTfbd6.jpg" alt="" class="w-full h-full rounded-full border-2 border-slate-100">
         </div>
     </a>
-    <a href="/ruttien">
+    <a href="<?php echo $_ENV['chatadmin']; ?>">
         <div>
             <span class=" relative cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center mb-1 dark:text-white
           text-slate-900">
-                <iconify-icon icon="bi:cash-coin"></iconify-icon>
+                <iconify-icon icon="eos-icons:admin-outlined"></iconify-icon>
             </span>
             <span class=" block text-[11px] text-slate-600 dark:text-slate-300">
-                Rút Xu
+                Admin
             </span>
         </div>
     </a>

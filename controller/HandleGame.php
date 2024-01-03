@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . "./TelegramController.php");
+require_once(__DIR__ . "/TelegramController.php");
 require_once(__DIR__ . "/../model/GameModel.php");
 require_once(__DIR__ . "/../model/UserModel.php");
 require_once(__DIR__ . "/../model/HistoryPlayModel.php");
@@ -37,21 +37,22 @@ class HandleGame extends BaseController
                 }
 
                 if ($money < $min_cuoc || $money > $max_cuoc || $money < 0) {
-                    return jsonResponse(["status" => "error", "message" => "Số tiền cược không hợp lệ, Tối thiểu là " . customNumberFormat($min_cuoc) . " xu và tối đa là " . customNumberFormat($max_cuoc) . " xu"]);
+                    return jsonResponse(["status" => "error", "message" => "Số Xu cược không hợp lệ, Tối thiểu là " . customNumberFormat($min_cuoc) . " xu và tối đa là " . customNumberFormat($max_cuoc) . " xu"]);
                 }
 
                 ///gen trans_id;
-                $tranId = randTrandID($noidung, 1);
-                $telegram->pushRealTime("Đang đợi Kết quả xúc xắc. Mã Giao Dịch :" . $tranId);
+                $sorandom = rand(000000000,999999999);
+                $tranId = $noidung . $sorandom;
+                $telegram->pushRealTime("Đang đợi kết Quả. MGD :" . $tranId);
                 switch (strtoupper($noidung)) {
                     case 'C':
-                        ///trừ tiền
+                        ///trừ Xu
                         $trutienUsers = $this->users->update("users", [
                             "money" => $checkUser["money"] - $money
                         ], [
                             "username" => getSessionUser()
                         ]);
-                        ///cộng tiền hoa hồng nè
+                        ///cộng Xu hoa hồng nè
                         if ($checkUser["ref_user"] != null) {
                             ///lấy info user 
                             $userRef = $this->users->getByUsername($checkUser["ref_user"]);
@@ -71,9 +72,9 @@ class HandleGame extends BaseController
                         }
                         ///gửi sms tới GR
                         $username = catUsername(getSessionUser());
-                        $telegram->sendMsgToGroup("THÔNG BÁO QUAY THƯỞNG CHO USER :<b>" . $username . "</b>.");
+                        $telegram->sendMsgToGroup("┏━━━━━━━━━━━━━━━━┓\n<b>" . htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . "</b> Đang Tung Xúc Xắc ^^");
                         $sendDice = $telegram->sendDice();
-                        $telegram->sendMsgToGroup("Đợi Kết quả từ xúc xắc ...");
+                        
                         if (in_array($sendDice["dice"]["value"], [2, 4, 6])) {
                             $received_amount = intval($money * $ratio);
                             $status = GameModel::STATUS_WIN;
@@ -113,24 +114,26 @@ class HandleGame extends BaseController
                         }
                         sleep(2);
                         $text = "➡️ User: " .  catUsername(getSessionUser()) . "\n";
-                        $text .= "➡️ Trò Chơi: Chẵn Lẻ \n";
-                        $text .= "➡️ Kết quả Xúc Xắc: <b>" . $sendDice["dice"]["value"] . "</b>\n";
-                        $text .= "➡️ Đã Cược: " . $this->games->getInfoGame($noidung)["game_name"] . "\n";
-                        $text .= "➡️ Trạng Thái: " . $status . "\n";
-                        $text .= "➡️ Tiền Cược: " . customNumberFormat($money) . "\n";
-                        $text .= "➡️ Tiền Nhận: " . customNumberFormat($received_amount) . "\n";
-                        $text .= "➡️ Mã Giao Dịch: " . $tranId . "\n";
+                        $text .= "➡️ Game: Chẵn Lẻ  (" . $this->games->getInfoGame($noidung)["game_name"] . ")\n\n";
+                        
+                        $text .= "⭐ <b>Kết quả: " . $sendDice["dice"]["value"] . "</b> <code>" . $status . "</code>\n\n";
+                        
+
+                        $text .= "➡️ Xu Cược: " . customNumberFormat($money) . " xu\n";
+                        $text .= "➡️ Xu Nhận: " . customNumberFormat($received_amount) . " xu\n";
+                        $text .= "➡️ MGD: " . $tranId . "\n┗━━━━━━━━━━━━━━━━┛";
                         $telegram->sendMsgToGroup($text, $sendDice["message_id"]);
-                        return jsonResponse(["status" => $jsonstt, "message" => "Trạng Thái " . $status]);
+                        return jsonResponse(["status" => $jsonstt, "message" => "Số Điểm Xúc xắc: " . $sendDice["dice"]["value"] . " (" . $status . ")"]);
+
                         break;
                     case 'L':
-                        ///trừ tiền
+                        ///trừ Xu
                         $trutienUsers = $this->users->update("users", [
                             "money" => $checkUser["money"] - $money
                         ], [
                             "username" => getSessionUser()
                         ]);
-                        ///cộng tiền hoa hồng nè
+                        ///cộng Xu hoa hồng nè
                         if ($checkUser["ref_user"] != null) {
                             ///lấy info user 
                             $userRef = $this->users->getByUsername($checkUser["ref_user"]);
@@ -150,9 +153,11 @@ class HandleGame extends BaseController
                         }
                         ///gửi sms tới GR
                         $username = catUsername(getSessionUser());
-                        $telegram->sendMsgToGroup("THÔNG BÁO QUAY THƯỞNG CHO USER :<b>" . $username . "</b>.");
+                        $telegram->sendMsgToGroup("┏━━━━━━━━━━━━━━━━┓\n<b>" . htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . "</b> Đang Tung Xúc Xắc ^^");
+
+
                         $sendDice = $telegram->sendDice();
-                        $telegram->sendMsgToGroup("Đợi Kết quả từ xúc xắc ...");
+                        
                         if (in_array($sendDice["dice"]["value"], [1, 3, 5])) {
                             $received_amount = intval($money * $ratio);
                             $status = GameModel::STATUS_WIN;
@@ -192,24 +197,24 @@ class HandleGame extends BaseController
                         }
                         sleep(2);
                         $text = "➡️ User: " .  catUsername(getSessionUser()) . "\n";
-                        $text .= "➡️ Trò Chơi: Chẵn Lẻ \n";
-                        $text .= "➡️ Kết quả Xúc Xắc: <b>" . $sendDice["dice"]["value"] . "</b>\n";
-                        $text .= "➡️ Đã Cược: " . $this->games->getInfoGame($noidung)["game_name"] . "\n";
-                        $text .= "➡️ Trạng Thái: " . $status . "\n";
-                        $text .= "➡️ Tiền Cược: " . customNumberFormat($money) . "\n";
-                        $text .= "➡️ Tiền Nhận: " . customNumberFormat($received_amount) . "\n";
-                        $text .= "➡️ Mã Giao Dịch: " . $tranId . "\n";
+                        $text .= "➡️ Game: Chẵn Lẻ  (" . $this->games->getInfoGame($noidung)["game_name"] . ")\n\n";
+                        $text .= "⭐ <b>Kết quả: " . $sendDice["dice"]["value"] . "</b> <code>" . $status . "</code>\n\n";
+                        
+
+                        $text .= "➡️ Xu Cược: " . customNumberFormat($money) . " xu\n";
+                        $text .= "➡️ Xu Nhận: " . customNumberFormat($received_amount) . " xu\n";
+                        $text .= "➡️ MGD: " . $tranId . "\n┗━━━━━━━━━━━━━━━━┛";
                         $telegram->sendMsgToGroup($text, $sendDice["message_id"]);
-                        return jsonResponse(["status" => $jsonstt, "message" => "Trạng Thái " . $status]);
+                        return jsonResponse(["status" => $jsonstt, "message" => "Số Điểm Xúc xắc: " . $sendDice["dice"]["value"] . " (" . $status . ")"]);
                         break;
                     case 'T':
-                        ///trừ tiền
+                        ///trừ Xu
                         $trutienUsers = $this->users->update("users", [
                             "money" => $checkUser["money"] - $money
                         ], [
                             "username" => getSessionUser()
                         ]);
-                        ///cộng tiền hoa hồng nè
+                        ///cộng Xu hoa hồng nè
                         if ($checkUser["ref_user"] != null) {
                             ///lấy info user 
                             $userRef = $this->users->getByUsername($checkUser["ref_user"]);
@@ -229,9 +234,9 @@ class HandleGame extends BaseController
                         }
                         ///gửi sms tới GR
                         $username = catUsername(getSessionUser());
-                        $telegram->sendMsgToGroup("THÔNG BÁO QUAY THƯỞNG CHO USER :<b>" . $username . "</b>.");
+                        $telegram->sendMsgToGroup("┏━━━━━━━━━━━━━━━━┓\n<b>" . htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . "</b> Đang Tung Xúc Xắc ^^");
                         $sendDice = $telegram->sendDice();
-                        $telegram->sendMsgToGroup("Đợi Kết quả từ xúc xắc ...");
+                        
                         if (in_array($sendDice["dice"]["value"], [4, 5, 6])) {
                             $received_amount = intval($money * $ratio);
                             $status = GameModel::STATUS_WIN;
@@ -271,24 +276,24 @@ class HandleGame extends BaseController
                         }
                         sleep(2);
                         $text = "➡️ User: " .  catUsername(getSessionUser()) . "\n";
-                        $text .= "➡️ Trò Chơi: Tài Xỉu \n";
-                        $text .= "➡️ Kết quả Xúc Xắc: <b>" . $sendDice["dice"]["value"] . "</b>\n";
-                        $text .= "➡️ Đã Cược: " . $this->games->getInfoGame($noidung)["game_name"] . "\n";
-                        $text .= "➡️ Trạng Thái: " . $status . "\n";
-                        $text .= "➡️ Tiền Cược: " . customNumberFormat($money) . "\n";
-                        $text .= "➡️ Tiền Nhận: " . customNumberFormat($received_amount) . "\n";
-                        $text .= "➡️ Mã Giao Dịch: " . $tranId . "\n";
+                        $text .= "➡️ Game: Tài Xỉu  (" . $this->games->getInfoGame($noidung)["game_name"] . ")\n\n";
+                        $text .= "⭐ <b>Kết quả: " . $sendDice["dice"]["value"] . "</b> <code>" . $status . "</code>\n\n";
+                        
+
+                        $text .= "➡️ Xu Cược: " . customNumberFormat($money) . " xu\n";
+                        $text .= "➡️ Xu Nhận: " . customNumberFormat($received_amount) . " xu\n";
+                        $text .= "➡️ MGD: " . $tranId . "\n┗━━━━━━━━━━━━━━━━┛";
                         $telegram->sendMsgToGroup($text, $sendDice["message_id"]);
-                        return jsonResponse(["status" => $jsonstt, "message" => "Trạng Thái " . $status]);
+                        return jsonResponse(["status" => $jsonstt, "message" => "Số Điểm Xúc xắc: " . $sendDice["dice"]["value"] . " (" . $status . ")"]);
                         break;
                     case 'X':
-                        ///trừ tiền
+                        ///trừ Xu
                         $trutienUsers = $this->users->update("users", [
                             "money" => $checkUser["money"] - $money
                         ], [
                             "username" => getSessionUser()
                         ]);
-                        ///cộng tiền hoa hồng nè
+                        ///cộng Xu hoa hồng nè
                         if ($checkUser["ref_user"] != null) {
                             ///lấy info user 
                             $userRef = $this->users->getByUsername($checkUser["ref_user"]);
@@ -308,9 +313,9 @@ class HandleGame extends BaseController
                         }
                         ///gửi sms tới GR
                         $username = catUsername(getSessionUser());
-                        $telegram->sendMsgToGroup("THÔNG BÁO QUAY THƯỞNG CHO USER :<b>" . $username . "</b>.");
+                        $telegram->sendMsgToGroup("┏━━━━━━━━━━━━━━━━┓\n<b>" . htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . "</b> Đang Tung Xúc Xắc ^^");
                         $sendDice = $telegram->sendDice();
-                        $telegram->sendMsgToGroup("Đợi Kết quả từ xúc xắc ...");
+                        
                         if (in_array($sendDice["dice"]["value"], [1, 2, 3])) {
                             $received_amount = intval($money * $ratio);
                             $status = GameModel::STATUS_WIN;
@@ -350,24 +355,24 @@ class HandleGame extends BaseController
                         }
                         sleep(2);
                         $text = "➡️ User: " .  catUsername(getSessionUser()) . "\n";
-                        $text .= "➡️ Trò Chơi: Tài Xỉu \n";
-                        $text .= "➡️ Kết quả Xúc Xắc: <b>" . $sendDice["dice"]["value"] . "</b>\n";
+                        $text .= "➡️ Game: Tài Xỉu  (" . $this->games->getInfoGame($noidung)["game_name"] . ")\n\n";
+                        $text .= "⭐ <b>Kết quả: " . $sendDice["dice"]["value"] . "</b> <code>" . $status . "</code>\n\n";
                         $text .= "➡️ Đã Cược : " . $this->games->getInfoGame($noidung)["game_name"] . "\n";
-                        $text .= "➡️ Trạng Thái: " . $status . "\n";
-                        $text .= "➡️ Tiền Cược: " . customNumberFormat($money) . "\n";
-                        $text .= "➡️ Tiền Nhận: " . customNumberFormat($received_amount) . "\n";
-                        $text .= "➡️ Mã Giao Dịch: " . $tranId . "\n";
+
+                        $text .= "➡️ Xu Cược: " . customNumberFormat($money) . " xu\n";
+                        $text .= "➡️ Xu Nhận: " . customNumberFormat($received_amount) . " xu\n";
+                        $text .= "➡️ MGD: " . $tranId . "\n┗━━━━━━━━━━━━━━━━┛";
                         $telegram->sendMsgToGroup($text, $sendDice["message_id"]);
-                        return jsonResponse(["status" => $jsonstt, "message" => "Trạng Thái " . $status]);
+                        return jsonResponse(["status" => $jsonstt, "message" => "Số Điểm Xúc xắc: " . $sendDice["dice"]["value"] . " (" . $status . ")"]);
                         break;
                     case 'M1':
-                        ///trừ tiền
+                        ///trừ Xu
                         $trutienUsers = $this->users->update("users", [
                             "money" => $checkUser["money"] - $money
                         ], [
                             "username" => getSessionUser()
                         ]);
-                        ///cộng tiền hoa hồng nè
+                        ///cộng Xu hoa hồng nè
                         if ($checkUser["ref_user"] != null) {
                             ///lấy info user 
                             $userRef = $this->users->getByUsername($checkUser["ref_user"]);
@@ -387,9 +392,9 @@ class HandleGame extends BaseController
                         }
                         ///gửi sms tới GR
                         $username = catUsername(getSessionUser());
-                        $telegram->sendMsgToGroup("THÔNG BÁO QUAY THƯỞNG CHO USER :<b>" . $username . "</b>.");
+                        $telegram->sendMsgToGroup("┏━━━━━━━━━━━━━━━━┓\n<b>" . htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . "</b> Đang Tung Xúc Xắc ^^");
                         $sendDice = $telegram->sendDice();
-                        $telegram->sendMsgToGroup("Đợi Kết quả từ xúc xắc ...");
+                        
                         if (in_array($sendDice["dice"]["value"], [1, 2, 3, 4])) {
                             $received_amount = intval($money * $ratio);
                             $status = GameModel::STATUS_WIN;
@@ -429,24 +434,24 @@ class HandleGame extends BaseController
                         }
                         sleep(2);
                         $text = "➡️ User: " .  catUsername(getSessionUser()) . "\n";
-                        $text .= "➡️ Trò Chơi: May Mắn \n";
-                        $text .= "➡️ Kết quả Xúc Xắc: <b>" . $sendDice["dice"]["value"] . "</b>\n";
+                        $text .= "➡️ Game: May Mắn  (" . $this->games->getInfoGame($noidung)["game_name"] . ")\n\n";
+                        $text .= "⭐ <b>Kết quả: " . $sendDice["dice"]["value"] . "</b> <code>" . $status . "</code>\n\n";
                         $text .= "➡️ Đã Cược : " . $this->games->getInfoGame($noidung)["game_name"] . "\n";
-                        $text .= "➡️ Trạng Thái: " . $status . "\n";
-                        $text .= "➡️ Tiền Cược: " . customNumberFormat($money) . "\n";
-                        $text .= "➡️ Tiền Nhận: " . customNumberFormat($received_amount) . "\n";
-                        $text .= "➡️ Mã Giao Dịch: " . $tranId . "\n";
+
+                        $text .= "➡️ Xu Cược: " . customNumberFormat($money) . " xu\n";
+                        $text .= "➡️ Xu Nhận: " . customNumberFormat($received_amount) . " xu\n";
+                        $text .= "➡️ MGD: " . $tranId . "\n┗━━━━━━━━━━━━━━━━┛";
                         $telegram->sendMsgToGroup($text, $sendDice["message_id"]);
-                        return jsonResponse(["status" => $jsonstt, "message" => "Trạng Thái " . $status]);
+                        return jsonResponse(["status" => $jsonstt, "message" => "Số Điểm Xúc xắc: " . $sendDice["dice"]["value"] . " (" . $status . ")"]);
                         break;
                     case 'M2':
-                        ///trừ tiền
+                        ///trừ Xu
                         $trutienUsers = $this->users->update("users", [
                             "money" => $checkUser["money"] - $money
                         ], [
                             "username" => getSessionUser()
                         ]);
-                        ///cộng tiền hoa hồng nè
+                        ///cộng Xu hoa hồng nè
                         if ($checkUser["ref_user"] != null) {
                             ///lấy info user 
                             $userRef = $this->users->getByUsername($checkUser["ref_user"]);
@@ -466,9 +471,9 @@ class HandleGame extends BaseController
                         }
                         ///gửi sms tới GR
                         $username = catUsername(getSessionUser());
-                        $telegram->sendMsgToGroup("THÔNG BÁO QUAY THƯỞNG CHO USER :<b>" . $username . "</b>.");
+                        $telegram->sendMsgToGroup("┏━━━━━━━━━━━━━━━━┓\n<b>" . htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . "</b> Đang Tung Xúc Xắc ^^");
                         $sendDice = $telegram->sendDice();
-                        $telegram->sendMsgToGroup("Đợi Kết quả từ xúc xắc ...");
+                        
                         if (in_array($sendDice["dice"]["value"], [6, 2, 3, 5])) {
                             $received_amount = intval($money * $ratio);
                             $status = GameModel::STATUS_WIN;
@@ -508,24 +513,24 @@ class HandleGame extends BaseController
                         }
                         sleep(2);
                         $text = "➡️ User: " .  catUsername(getSessionUser()) . "\n";
-                        $text .= "➡️ Trò Chơi: May Mắn \n";
-                        $text .= "➡️ Kết quả Xúc Xắc: <b>" . $sendDice["dice"]["value"] . "</b>\n";
+                        $text .= "➡️ Game: May Mắn  (" . $this->games->getInfoGame($noidung)["game_name"] . ")\n\n";
+                        $text .= "⭐ <b>Kết quả: " . $sendDice["dice"]["value"] . "</b> <code>" . $status . "</code>\n\n";
                         $text .= "➡️ Đã Cược : " . $this->games->getInfoGame($noidung)["game_name"] . "\n";
-                        $text .= "➡️ Trạng Thái: " . $status . "\n";
-                        $text .= "➡️ Tiền Cược: " . customNumberFormat($money) . "\n";
-                        $text .= "➡️ Tiền Nhận: " . customNumberFormat($received_amount) . "\n";
-                        $text .= "➡️ Mã Giao Dịch: " . $tranId . "\n";
+
+                        $text .= "➡️ Xu Cược: " . customNumberFormat($money) . " xu\n";
+                        $text .= "➡️ Xu Nhận: " . customNumberFormat($received_amount) . " xu\n";
+                        $text .= "➡️ MGD: " . $tranId . "\n┗━━━━━━━━━━━━━━━━┛";
                         $telegram->sendMsgToGroup($text, $sendDice["message_id"]);
-                        return jsonResponse(["status" => $jsonstt, "message" => "Trạng Thái " . $status]);
+                        return jsonResponse(["status" => $jsonstt, "message" => "Số Điểm Xúc xắc: " . $sendDice["dice"]["value"] . " (" . $status . ")"]);
                         break;
                     case 'M3':
-                        ///trừ tiền
+                        ///trừ Xu
                         $trutienUsers = $this->users->update("users", [
                             "money" => $checkUser["money"] - $money
                         ], [
                             "username" => getSessionUser()
                         ]);
-                        ///cộng tiền hoa hồng nè
+                        ///cộng Xu hoa hồng nè
                         if ($checkUser["ref_user"] != null) {
                             ///lấy info user 
                             $userRef = $this->users->getByUsername($checkUser["ref_user"]);
@@ -545,9 +550,9 @@ class HandleGame extends BaseController
                         }
                         ///gửi sms tới GR
                         $username = catUsername(getSessionUser());
-                        $telegram->sendMsgToGroup("THÔNG BÁO QUAY THƯỞNG CHO USER :<b>" . $username . "</b>.");
+                        $telegram->sendMsgToGroup("┏━━━━━━━━━━━━━━━━┓\n<b>" . htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . "</b> Đang Tung Xúc Xắc ^^");
                         $sendDice = $telegram->sendDice();
-                        $telegram->sendMsgToGroup("Đợi Kết quả từ xúc xắc ...");
+                        
                         if (in_array($sendDice["dice"]["value"], [3, 4, 5, 6])) {
                             $received_amount = intval($money * $ratio);
                             $status = GameModel::STATUS_WIN;
@@ -587,22 +592,22 @@ class HandleGame extends BaseController
                         }
                         sleep(2);
                         $text = "➡️ User: " .  catUsername(getSessionUser()) . "\n";
-                        $text .= "➡️ Trò Chơi: May Mắn \n";
-                        $text .= "➡️ Kết quả Xúc Xắc: <b>" . $sendDice["dice"]["value"] . "</b>\n";
+                        $text .= "➡️ Game: May Mắn  (" . $this->games->getInfoGame($noidung)["game_name"] . ")\n\n";
+                        $text .= "⭐ <b>Kết quả: " . $sendDice["dice"]["value"] . "</b> <code>" . $status . "</code>\n\n";
                         $text .= "➡️ Đã Cược : " . $this->games->getInfoGame($noidung)["game_name"] . "\n";
-                        $text .= "➡️ Trạng Thái: " . $status . "\n";
-                        $text .= "➡️ Tiền Cược: " . customNumberFormat($money) . "\n";
-                        $text .= "➡️ Tiền Nhận: " . customNumberFormat($received_amount) . "\n";
-                        $text .= "➡️ Mã Giao Dịch: " . $tranId . "\n";
+
+                        $text .= "➡️ Xu Cược: " . customNumberFormat($money) . " xu\n";
+                        $text .= "➡️ Xu Nhận: " . customNumberFormat($received_amount) . " xu\n";
+                        $text .= "➡️ MGD: " . $tranId . "\n┗━━━━━━━━━━━━━━━━┛";
                         $telegram->sendMsgToGroup($text, $sendDice["message_id"]);
-                        return jsonResponse(["status" => $jsonstt, "message" => "Trạng Thái " . $status]);
+                        return jsonResponse(["status" => $jsonstt, "message" => "Số Điểm Xúc xắc: " . $sendDice["dice"]["value"] . " (" . $status . ")"]);
                         break;
                     default:
                         return jsonResponse(["status" => "error", "message" => "kHÔNG TỒN TẠI VUI LÒNG THỬ LẠI SAU"]);
                         break;
                 }
             }
-            return jsonResponse(["status" => "error", "message" => "Tài khoản không đủ tiền, Vui lòng nạp thêm nhé"]);
+            return jsonResponse(["status" => "error", "message" => "Tài khoản không đủ Xu, Vui lòng nạp thêm nhé"]);
         }
 
         return jsonResponse(["status" => "error", "message" => "SERVER_ERROR"]);

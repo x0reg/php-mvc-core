@@ -1,17 +1,17 @@
-<?php include_once(__DIR__ . "./layout/header.php");  ?>
+<?php include_once(__DIR__ . "/layout/header.php"); ?>
 
 <body class=" font-inter dashcode-app" id="body_class" style="width: 100%; height: 100px;background: linear-gradient(to right, #FF69B4, #EE82EE);">
     <!-- [if IE]> <p class="browserupgrade"> You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security. </p> <![endif] -->
     <main class="app-wrapper">
         <!-- BEGIN: Sidebar -->
-        <?php include_once(__DIR__ . "./layout/sidebar.php");  ?>
+        <?php include_once(__DIR__ . "/layout/sidebar.php");  ?>
         <!-- End: Sidebar -->
 
         <div class="flex flex-col justify-between min-h-screen">
             <div>
                 <!-- BEGIN: Header -->
                 <!-- BEGIN: Header -->
-                <?php require_once(__DIR__ . "./layout/nav.php");  ?>
+                <?php include_once(__DIR__ . "/layout/nav.php");  ?>
                 <!-- END: Header -->
                 <!-- END: Header -->
                 <div class="content-wrapper transition-all duration-150 ltr:ml-[248px] rtl:mr-[248px]" id="content_wrapper">
@@ -29,21 +29,27 @@
 
                                 <div class="grid lg:grid-cols-12 md:grid-cols-12 sm:grid-cols-12 grid-cols-1 gap-5">
                                     <div class="bg-slate-900 dark:bg-slate-800 mb-10 mt-7 p-4 relative text-center rounded-2xl text-danger" style="background-color: rgb(255 255 255 / var(--tw-bg-opacity));">
-                                        <img src="/public/images/svg/rabit.svg" alt="" class="mx-auto relative -mt-[73px]">
+                                        <img src="<?= Settings("logo") ?>" alt="" class="mx-auto relative -mt-[73px]" width="300" height="200">
                                         <div class="max-w-[560px] mx-auto mt-5">
                                             <div class="widget-title">
-                                                <h5>Hệ thống Game Telegram - Uy tín số 1 Việt Nam</h5>
+                                                <h1 class="buttonEffect-glow1" style="font-size: 18px; text-align: center; margin-top: -10px; "> Top 1 Sever VietNam&nbsp;&nbsp;&nbsp;
+                                                    <!-- <a href="#" ng-if="accountInfo.IsVerifyMail" class="ng-scope" style="background: none; text-decoration: none;"> -->
+                                                    <!-- <span class="svg-icon svg-icon-1 svg-icon-primary"> -->
+                                                    <img src="https://i.imgur.com/ZTLAWTv.gif" alt="Logo" width="20" height="20" />
+                                                    <!-- </span> -->
+                                                    <!-- </a> -->
+                                                </h1>
                                             </div>
-                                            <div class="text-xs font-normal">
-                                                Giao dịch tự động 24/7 - Trả thưởng 30s
-                                            </div>
+                                            <!--<div class="text-xs font-normal">-->
+                                            <!--    Giao dịch tự động 24/7 - Trả thưởng 30s-->
+                                            <!--</div>-->
 
                                         </div>
-                                        <div class="mt-6">
-                                            <button class="btn bg-white hover:bg-opacity-80 text-slate-900 btn-sm w-full block btn-primary">
-                                                Box chat telegram
-                                            </button>
-                                        </div>
+                                        <!--<div class="mt-6">-->
+                                        <!--    <button class="btn bg-white hover:bg-opacity-80 text-slate-900 btn-sm w-full block btn-primary">-->
+                                        <!--        Box chat telegram-->
+                                        <!--    </button>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
 
@@ -52,9 +58,15 @@
                                         <div class="card active">
                                             <div class="ccard-body flex flex-col rounded-md bg-white dark:bg-slate-800 shadow-base menu-open">
                                                 <div class="items-center p-5">
-                                                    <h3 class="card-title text-slate-900 dark:text-white text-center ">KHÔ MÁU THÔI ANH EM</h3>
-                                                    <hr class="my-3">
+
+
+                                                    <!--<h3 class="card-title text-slate-900 dark:text-white text-center ">KHÔ MÁU THÔI ANH EM</h3>-->
+                                                    <!--<hr class="my-3">-->
                                                     <div class="card-body p-0">
+
+                                                        <button onclick="window.location.href='https://vuabem.com';" class="glow-on-hover text-slate-900 dark-text-white text-center">Game Thời Gian
+                                                            <img src="/public/images/all-img/4Bmb-unscreen.gif" alt="Icon" style="width: 50px; margin-left: 0px;"></button>
+                                                        <br>
                                                         <!-- BEGIN: Customer Card -->
                                                         <div>
                                                             <ul class="nav nav-pills flex gap-4 justify-center flex-wrap" id="pills-tabHorizontal" role="tablist">
@@ -70,14 +82,37 @@
                                                             <hr class="my-3">
                                                             <div class="tab-content" id="pills-tabContentHorizontal">
 
+
+                                                                <style>
+                                                                    .yellow-frame {
+                                                                        background-color: #FFD700;
+                                                                        padding: 10px;
+                                                                        border-radius: 10px;
+                                                                        display: inline-block;
+                                                                        width: 160px;
+                                                                        height: 35px;
+                                                                        font-size: 15px;
+                                                                    }
+                                                                    }
+                                                                </style>
+
+
                                                                 <!-- tab game chẵn lẻ-->
                                                                 <div class="tab-pane fade show active" id="game-chanLe" role="tabpanel" aria-labelledby="pills-home-tabHorizontal">
                                                                     <div class="flex flex-col gap-5">
-                                                                        <p>Kết quả dựa vào <strong>Xúc Xắc Telegram. bên mình không can thiệp vào Kết quả được nhé. Tất cả KQ được thông báo tại BOX TELEGRAM</strong></p>
+                                                                        <p>Kết quả dựa vào Icon Xúc Xắc Telegram.</p>
+                                                                        <button style="border: 5px; height: 100%; width: 100%; ">
+                                                                            <a href="<?php echo ($_ENV['Boxtle']); ?>">
+                                                                                <span style="color: #000000; border-radius: 5px; height: 100%; width: 100%;">
+                                                                                    <span style="width: 5px; height: 4px; background-color: #00FF00; border-radius: 5px; padding: 0;"> Kết quả xúc xắc tại đây nè : )</span>
+                                                                                </span>
+                                                                            </a>
+                                                                        </button>
+
+
                                                                         <div class="flex flex-col gap-4">
                                                                             <div class="flex flex-col gap-1">
-                                                                                <label class="block font-medium text-secondary-700 dark:text-secondary-400">Chọn
-                                                                                    nội dung cược :</label>
+                                                                                <label class="block font-medium text-secondary-700 dark:text-secondary-400">Chọn Nội Dung :</label>
                                                                                 <div class="grid grid-cols-2 gap-4 mt-1">
                                                                                     <div class="game">
                                                                                         <input id="gameCL_C" value="C" type="radio" name="game-value-selection" class="hidden peer" data-url="api/chanle">
@@ -188,12 +223,22 @@
                                                                     </div>
                                                                     <hr class="my-5">
                                                                     <center>
+
+
+
+
+
+
+
                                                                         <button id="submitButtonAjax" data-url="/api/play-game" class="submitButton btn inline-flex justify-center btn-primary rounded-[25px]">
                                                                             <span class="flex items-center">
-                                                                                <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2" icon="heroicons-outline:newspaper"></iconify-icon>
-                                                                                <span>XÁC NHẬN ĐẶT CƯỢC</span>
+                                                                                <span>Xác Nhận Cược &nbsp;&nbsp; </span>
+                                                                                <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2" icon="heroicons-outline:shield-check"></iconify-icon>
                                                                             </span>
                                                                         </button>
+
+
+
                                                                     </center>
                                                                 </div>
 
@@ -202,11 +247,17 @@
                                                                 <!-- tab game TÀI XỈU-->
                                                                 <div class="tab-pane fade" id="game-taiXiu" role="tabpanel" aria-labelledby="pills-contact-tabHorizontal">
                                                                     <div class="flex flex-col gap-5">
-                                                                        <p>Kết quả dựa vào <strong>Xúc Xắc Telegram. bên mình không can thiệp vào Kết quả được nhé. Tất cả KQ được thông báo tại BOX TELEGRAM</strong></p>
+                                                                        <p>Kết quả dựa vào Icon Xúc Xắc Telegram.</p>
+                                                                        <button style="border: 5px; height: 100%; width: 100%; ">
+                                                                            <a href="<?php echo ($_ENV['Boxtle']); ?>">
+                                                                                <span style="color: #000000; border-radius: 5px; height: 100%; width: 100%;">
+                                                                                    <span style="width: 5px; height: 4px; background-color: #00FF00; border-radius: 5px; padding: 0;">Kết quả xúc xắc tại đây nè : )</span>
+                                                                                </span>
+                                                                            </a>
+                                                                        </button>
                                                                         <div class="flex flex-col gap-4">
                                                                             <div class="flex flex-col gap-1">
-                                                                                <label class="block font-medium text-secondary-700 dark:text-secondary-400">Chọn
-                                                                                    nội dung cược :</label>
+                                                                                <label class="block font-medium text-secondary-700 dark:text-secondary-400">Chọn Nội Dung :</label>
                                                                                 <div class="grid grid-cols-2 gap-4 mt-1">
                                                                                     <div class="game">
                                                                                         <input id="gameMM_M1" value="M1" type="radio" name="game-value-selection" class="hidden peer" data-url="api/taixiu">
@@ -296,8 +347,8 @@
                                                                     <center>
                                                                         <button id="submitButtonAjax" data-url="/api/play-game" class="submitButton btn inline-flex justify-center btn-primary rounded-[25px]">
                                                                             <span class="flex items-center">
-                                                                                <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2" icon="heroicons-outline:newspaper"></iconify-icon>
-                                                                                <span>XÁC NHẬN ĐẶT CƯỢC</span>
+                                                                                <span>Xác Nhận Cược &nbsp;&nbsp; </span>
+                                                                                <iconify-icon class="text-xl ltr:mr-2 rtl:ml-2" icon="heroicons-outline:shield-check"></iconify-icon>
                                                                             </span>
                                                                         </button>
                                                                     </center>
@@ -317,7 +368,7 @@
                                         <div class="card active">
                                             <div class="card-body rounded-md bg-white dark:bg-slate-800 shadow-base menu-open">
                                                 <div class="items-center text-center p-5">
-                                                    <h3 class="card-title text-slate-900 dark:text-white">THỐNG KÊ</h3>
+                                                    <h3 class="card-title text-slate-900 dark:text-white"></h3>
                                                     <hr class="my-3">
                                                     <div class="card-body p-0">
                                                         <!-- BEGIN: Customer Card -->
@@ -332,7 +383,26 @@
                                                                     <button href="#pills-settingsHorizontal" class="nav-link block btn inline-flex justify-center btn-danger btn-sm" id="pills-settings-tabHorizontal" data-bs-toggle="pill" data-bs-target="#nhiem-vu-ngay" role="tab" aria-controls="nhiem-vu-ngay" aria-selected="false">Nhiệm Vụ Ngày</a>
                                                                 </li>
                                                                 <li class="nav-item text-center" role="presentation">
-                                                                    <button href="#pills-settingsHorizontal" class="nav-link block btn inline-flex justify-center btn-danger btn-sm" id="pills-settings-tabHorizontal" data-bs-toggle="pill" data-bs-target="#gioi-thieu" role="tab" aria-controls="gioi-thieu" aria-selected="false">giới thiệu bạn bè</a>
+                                                                    <button href="#pills-settingsHorizontal" class="nav-link block btn inline-flex justify-center btn-danger btn-sm" id="pills-settings-tabHorizontal" data-bs-toggle="pill" data-bs-target="#gioi-thieu" role="tab" aria-controls="gioi-thieu" aria-selected="false">Đại Lý</a>
+                                                                </li>
+                                                                <style>
+                                                                    @keyframes blink {
+                                                                        0% {
+                                                                            opacity: 1;
+                                                                        }
+
+                                                                        50% {
+                                                                            opacity: 0.5;
+                                                                        }
+
+                                                                        100% {
+                                                                            opacity: 1;
+                                                                        }
+                                                                    }
+                                                                </style>
+
+                                                                <li class="nav-item text-center">
+                                                                    <a href="<?php echo $_ENV['Boxtle']; ?>" style="animation: blink 1s ease infinite;" class="nav-link block btn inline-flex justify-center btn-danger btn-sm">Sắp ra mắt</a>
                                                                 </li>
                                                             </ul>
                                                             <hr class="my-3">
@@ -341,7 +411,7 @@
                                                                 <!-- tab lịch sử chơi -->
                                                                 <div class="tab-pane fade show active" id="lich-su-choi" role="tabpanel" aria-labelledby="pills-profile-tabHorizontal">
                                                                     <div class="flex flex-col gap-5">
-                                                                        <p><strong>LỊCH SỬ CHƠI GAME.</strong></p>
+                                                                        <p><strong>Lịch Sử Chơi Của Bạn</strong></p>
                                                                         <div class="card">
                                                                             <div class="card-body px-6 pb-6">
                                                                                 <div class="overflow-x-auto -mx-6">
@@ -359,7 +429,7 @@
                                                                                                         </th>
 
                                                                                                         <th scope="col" class=" table-th " style="text-align: center;">
-                                                                                                            Nội DUng
+                                                                                                            Nội Dung
                                                                                                         </th>
 
                                                                                                         <th scope="col" class=" table-th " style="text-align: center;">
@@ -402,12 +472,20 @@
                                                                 <div class="tab-pane fade" id="nhiem-vu-ngay" role="tabpanel" aria-labelledby="pills-settings-tabHorizontal">
 
                                                                     <div class="alert alert-danger alert-dismissible alert-outline fade show" role="alert">
-                                                                        <strong>🔥 CHƠI CÀNG NHIỀU NHẬN CÀNG TO 🔥</strong>
+                                                                        <strong>🔥 Chơi Càng Nhiều, Nhận Càng Lớn 🔥</strong>
+                                                                        <br>
+                                                                        <?php if ($moc == null) {
+                                                                            echo "<strong>✨ Mốc Đua Hiện Tại: " . customNumberFormat($totalPlay) . "/5.000</strong>";
+                                                                        } else {
+                                                                            // echo "<strong>✨ Mốc Đua Hiện Tại: '" . $totalPlay."'</strong>";
+                                                                            echo "<strong>✨ Mốc Đua Hiện Tại: " . customNumberFormat($totalPlay) . "/" . customNumberFormat($moc["max"]) . "</strong>";
+                                                                        } ?>
                                                                     </div>
                                                                     <br>
-                                                                    <center><button class="diemdanhNVHN btn inline-flex justify-center btn-primary" data-csrf="<?= $csrf_token ?>">
+                                                                    <center><button class="diemdanhNVHN hongmongmo_Diem_Danh" data-csrf="<?= $csrf_token ?>">
+
+                                                                            <span>Nhận Thưởng ngay</span>&nbsp;&nbsp;
                                                                             <iconify-icon class="text-xl spin-slow ltr:mr-2 rtl:ml-2 relative top-[1px]" icon="line-md:loading-twotone-loop"></iconify-icon>
-                                                                            <span>Nhận Thưởng ngay</span>
                                                                         </button></center>
                                                                     <br>
                                                                     <div class="card">
@@ -451,8 +529,15 @@
                                                                 <!-- tab giới thiệu bạn bè-->
                                                                 <div class="tab-pane fade" id="gioi-thieu" role="tabpanel" aria-labelledby="pills-settings-tabHorizontal">
 
-                                                                    <div class="alert alert-danger alert-dismissible alert-outline fade show" role="alert">
-                                                                        <strong>🔥 MỜI BẠN BÈ SAU 🔥</strong>
+                                                                    <div class="alert alert-danger alert-dismissible alert-outline fade show" role="alert" style="padding-left: 25px; padding-right: 25px; text-align: justify;">
+                                                                        <center><strong> 👨‍❤️‍👨 Thêm Bạn - Thêm Vui 👨‍❤️‍👨 </strong></center>
+                                                                        <br>
+                                                                        <p>Giờ đây, bạn có thể kiếm thêm hoa hồng miễn phí, chỉ bằng cách mời bạn bè tham gia VuaBem.Com chung vui cùng. <br><br>
+                                                                            Dù thế nào, bạn cũng sẽ chắc chắn đều nhận được 1.2% Xu người bạn đã đặt cược game.<br><br>
+                                                                            Mách Nhỏ: Bạn Nên Gửi Link Vào Facebook Để Mời Bạn Bè Chơi Nhiều Nhất Có Thể
+                                                                            Vì Chúng Tôi Không Giới Hạn Số Hoa Hồng Bạn Có Thể Nhận Được Và Số Bạn Bè Bạn Có Thể Mời Chung Vui ᴖᴥᴖ</p>
+                                                                        <strong>🌺 Số Người Bạn Đã Mời:<?= $totalRef ?></strong> <br>
+                                                                        <strong>💰 Tổng Hoa Hồng Bạn Đã Nhận: <?= customNumberFormat($totalBonus) ?></strong>
                                                                     </div>
                                                                     <br>
                                                                     <center><button class="copyText btn inline-flex justify-center btn-primary" data-clipboard-text="https://vuabem.com/auth/register?ref_user=<?= getSessionUser() ?>">
@@ -503,13 +588,32 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
+                                    <div class="xl:col-span-6 col-span-12">
+                                        <div class="card active">
+                                            <div class="card-body rounded-md bg-white dark:bg-slate-800 shadow-base menu-open">
+                                                <div class="items-center text-center p-5">
+                                                    <h3 class="card-title text-slate-900 dark:text-white">Dữ Liệu Sever Gần Đây</h3>
+                                                    <br><br>
+                                                    <img src="https://s5.gifyu.com/images/S8ArD.gif" alt="GIF Image" class="mx-auto relative -mt-[73px]" width="100" height="100">
+                                                    <div class="" style="text-align: left !important;margin-left: 15px !important;">
+                                                        <div class="tinhve001">
+                                                            Số User Đã Chơi : <?= $getDataFake["num_player"] ?> Member </div>
+                                                        <div class="tinhve001">
+                                                            Tổng Số Xu Đã Thắng : <?= customNumberFormat($getDataFake["total_xu_rut"]) ?> Xu</div>
+                                                        <div class="tinhve001">
+                                                            Lượt Đặt Cược : <?= $getDataFake["total_play"] ?> Lần</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="xl:col-span-12 col-span-12">
                                         <div class="card ">
                                             <div class="items-center text-center p-5">
-                                                <h3 class="card-title text-slate-900 dark:text-white">LỊCH SỬ ĐẶT CƯỢC</h3>
+                                                <h3 class="card-title text-slate-900 dark:text-white">Lịch Sử Chơi Sever</h3>
                                             </div>
                                             <div class="card-body p-0">
                                                 <!-- BEGIN: Products -->
@@ -585,11 +689,11 @@
                 </div>
             </div>
 
-            <?php include_once(__DIR__ . "./layout/nav-mobile.php");  ?>
+            <?php include_once(__DIR__ . "/layout/nav-mobile.php");  ?>
         </div>
     </main>
 
-    <?php include_once(__DIR__ . "./layout/footer.php");  ?>
+    <?php include_once(__DIR__ . "/layout/footer.php");  ?>
     <script>
         $(document).ready(function() {
             // Bắt sự kiện khi người dùng click vào nút 'addAmount' trong tất cả các tabs
@@ -623,6 +727,23 @@
         });
 
         ////ajax
+        function Swalfire(title, icon, text) {
+            return Swal.fire({
+                title: title,
+                icon: icon,
+                html: text,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: `
+    <i class="fa fa-thumbs-up"></i>OK
+  `,
+                confirmButtonAriaLabel: "Thumbs up, great!",
+                cancelButtonText: `
+    <a href="https://t.me/xucxacvuabem" target="_blank">LINK KẾT QUẢ</a>
+  `,
+                cancelButtonAriaLabel: "Thumbs down",
+            });
+        }
         $(document).ready(function() {
             $(".submitButton").on("click", function() {
                 var selectedNoiDungCuoc = $("input[type='radio']:checked").val();
@@ -644,15 +765,21 @@
                         $(".submitButton").prop("disabled", true).html('Đang xử lý...');
                     },
                     complete: function() {
+                        $('#' + activeTabId + ' #amount').val("");
+                        $("input[type='radio']:checked").prop('checked', false);
+                        getSoDu();
                         $(".submitButton").prop("disabled", false).html('<iconify-icon class="text-xl ltr:mr-2 rtl:ml-2" icon="heroicons-outline:newspaper"></iconify-icon>' + button);
                     },
                     success: function(data) {
+
                         if (data.status == "game") {
-                            Swal.fire('Thông Báo', data.message, "error");
+                            Swalfire('Thông Báo', 'error', data.message)
+                            // Swal.fire('Thông Báo', data.message, "error");
                         } else if (data.status == 'error') {
-                            Swal.fire('Thông Báo', data.message, "error");
+                            Swalfire('Thông Báo', 'error', data.message)
                         } else {
-                            Swal.fire('Thông Báo', data.message, data.status);
+                            // Swal.fire('Thông Báo', '<div class="left-align">'+data.message+'</div>', data.status);
+                            Swalfire('Thông Báo', 'success', '<div class="left-align">' + data.message + '</div>')
                         }
                     },
                     error: function(error) {
@@ -686,7 +813,24 @@
             });
         });
 
-
+        ///load
+        function getSoDu() {
+            $('.tab-pane').each(function() {
+                var tabId = $(this).attr('id');
+                $.ajax({
+                    url: "/api/get-so-du",
+                    type: "GET",
+                    dataType: "JSON",
+                    success: function(data) {
+                        // Cập nhật giá trị trong tab hiện tại
+                        $('#' + tabId + ' #soduthuc').html(data.money);
+                    },
+                    error: function(error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        }
         ////pusher
 
         var pusher = new Pusher('77c2a37e9785661ad4ab', {
@@ -695,15 +839,15 @@
         });
 
         var channel = pusher.subscribe('my-channel');
-        channel.bind(<?= getSessionUser() ?>, function(data) {
+        channel.bind("<?= getSessionUser() ?>", function(data) {
             customAlert();
         });
 
         function customAlert() {
             let timerInterval;
             Swal.fire({
-                title: "ĐANG QUAY THƯỞNG",
-                timer: 4000,
+                title: "Đang Tung Xúc Xắc ᴖᴥᴖ",
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading();
@@ -725,3 +869,6 @@
     </script>
 
     </html>
+    <style>
+
+    </style>

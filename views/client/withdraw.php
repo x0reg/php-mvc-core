@@ -1,5 +1,6 @@
-<?php include_once(__DIR__ . "/layout/header.php"); ?>
+<?php include_once(__DIR__ . "/layout/header.php"); 
 
+?>
 
 <body class=" font-inter dashcode-app" id="body_class" style="width: 100%; height: 100px;background: linear-gradient(to right, #FF69B4, #EE82EE);">
     <!-- [if IE]> <p class="browserupgrade"> You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security. </p> <![endif] -->
@@ -25,24 +26,30 @@
                                         <div class="card-body flex flex-col p-6">
                                             <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                                                 <div class="flex-1">
-                                                    <div class="card-title text-slate-900 dark:text-white">Rút Xu Tự Động</div>
+                                                    <div class="card-title text-slate-900 dark:text-white">Tạo Đơn Rút Xu</div>
                                                 </div>
                                             </header>
+                                            <div  class="alert alert-success alert-dismissible alert-outline fade show" role="alert">
+                                                <strong style="color: white;" >Cám ơn bạn đã tham gia trò chơi ^^</strong>
+                                            </div>
+                                            <br>
                                             <form action="/api/withdraw" method="post" id="ajaxSubmitForm">
                                                 <div class="card-text h-full space-y-4">
                                                     <div class="input-area">
-                                                        Nhập STK nhận tiền :
+                                                        Số Tài Khoản :
                                                         <div class="relative">
-                                                            <input type="text" name="account_number" class="form-control !pr-12" value="">
+                                                            <!--<input type="text" name="account_number" class="form-control !pr-12" value="<?= getSessionUser() ?>" readonly>-->
+                                                                <input type="text" name="account_number" class="form-control !pr-12" value="<?= $info["username"] ?>" readonly>
+
                                                         </div>
                                                     </div>
                                                     <div class="input-area">
-                                                        Nhập số Xu muốn rút :
+                                                         <p>Số Xu Rút <b id="soduthuc"> <?= customNumberFormat(getInfoUser("money")) ?></b> xu</b></p>
                                                         <div class="relative">
-                                                            <input type="text" name="amount" id="sotien" oninput="num()" class="form-control !pr-12" value="">
+                                                            <input type="text" name="amount" id="sotien" oninput="num()" class="form-control !pr-12" placeholder="Số Tiền Min Là 5.000đ - Max 50 Triệu">
                                                         </div>
                                                     </div>
-                                                    <button type="submit" class="btn inline-flex justify-center btn-dark">XÁC NHẬN</button>
+                                                    <button type="submit" class="btn inline-flex justify-center btn-info" style="color: #696969; width: 100%;">Rút Ngay Nàoo 😍</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -53,7 +60,7 @@
                                             <div class="card-body flex flex-col p-6">
                                                 <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                                                     <div class="flex-1">
-                                                        <div class="card-title text-slate-900 dark:text-white">LỊCH SỬ RÚT TIỀN</div>
+                                                        <div class="card-title text-slate-900 dark:text-white">Lịch Sử Rút Xu</div>
                                                     </div>
                                                 </header>
                                                 <div class="card-text h-full space-y-4">
@@ -69,8 +76,8 @@
                                                                                         MGD
                                                                                     </th>
 
-                                                                                    <th scope="col" class=" table-th " style="text-align: center;">
-                                                                                        Số tiền
+                                                                                    <th scope="col" class=" table-th " style="text-align: center; width: 24px;">
+                                                                                        Số tiền  
                                                                                     </th>
                                                                                     <th scope="col" class=" table-th " style="text-align: center;">
                                                                                         Thời gian
@@ -86,7 +93,7 @@
                                                                                     <tr class="hover:bg-slate-200 dark:hover:bg-slate-700" style="text-align: center;">
                                                                                         <td class="table-td"><?= $historys["trans_id"] ?></td>
                                                                                         <td class="table-td"> <?= customNumberFormat($historys["money"]) ?></td>
-                                                                                        <td class="table-td"> <?= $historys["time"] ?></td>
+                                                                                        <td class="table-td"> <?=    date('H:i:s d/m/Y', strtotime($historys["time"]))  ?></td>
                                                                                         <td class="table-td"><?= statusPlayGame($historys["status"]) ?></td>
                                                                                     </tr>
                                                                                 <?php  } ?>
@@ -133,4 +140,9 @@
     }
 </script>
 
+<style>
+    .table-th {
+        text-transform: none;
+    }
+</style>
 </html>

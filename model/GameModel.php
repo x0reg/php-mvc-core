@@ -6,8 +6,8 @@ class GameModel extends AppQuery
     protected $table = "z_list_game";
 
 
-    const STATUS_LOSE = "LOSE ❌";
-    const STATUS_WIN = "WIN ✅";
+    const STATUS_LOSE = "Thua";
+    const STATUS_WIN = "Chiến Thắng ✅";
 
     public function getInfoGame($cmt)
     {

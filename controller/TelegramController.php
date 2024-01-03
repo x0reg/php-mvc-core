@@ -32,6 +32,21 @@ class TelegramController extends BaseController
         return $sendDice;
     }
 
+
+// public function sendDice()
+// {
+//     $total = 0;
+//     for ($i = 0; $i < 3; $i++) {
+//         $sendDice = $this->telegram->sendDice([
+//             "chat_id" => $_ENV["ID_GROUP_TELEGRAM"],
+//         ]);
+//         $total += $sendDice["dice"]["value"];
+//     }
+//     return $total;
+// }
+
+
+
     public function sendMsgToGroup($text, $msg_id = null)
     {
         $sendMsg = $this->telegram->sendMessage([

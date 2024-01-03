@@ -5,6 +5,7 @@
         "guzzlehttp/guzzle": "^7.0",
         "irazasyed/telegram-bot-sdk": "^3.13",
         "pusher/pusher-php-server": "^7.2",
-        "symfony/var-dumper": "^6.3"
+        "symfony/var-dumper": "^6.3",
+        "phpseclib/phpseclib": "^2.0"
     }
 }

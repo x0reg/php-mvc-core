@@ -22,6 +22,9 @@ class Routers
                 if (isset($_GET['user'])) {
                     $matches['user'] = $_GET['user'];
                 }
+                 if (isset($_GET['token'])) {
+                    $matches['token'] = $_GET['token'];
+                }
                 if (is_array($route['handler'])) {
                     list($className, $methodName) = $route['handler'];
                     $controller = new $className();

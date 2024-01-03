@@ -5,6 +5,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="public/js/devtool.js"></script> -->
 <script src="/public/js/ajax.js"></script>
+<!--<script src="/public/js/DTT.js"></script>-->
+<!--<script src="/public/js/DT.js"></script>-->
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 <script>
@@ -20,6 +22,17 @@
         console.error('Trigger:', e.trigger);
     });
 </script>
+
+ <script>
+    DisableDevtool({
+        alert: true,
+        check: true,
+        checkTimer: 1000,
+        alertMessage: "Developer tools detected!"
+    });
+</script>
+
+
 <script>
     // Chặn tất cả phím tắt mở DevTools
     // document.onkeydown = function(e) {

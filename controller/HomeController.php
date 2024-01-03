@@ -7,15 +7,15 @@ use Firebase\JWT\Key;
 
 class HomeController extends BaseController
 {
-    protected $games;
+       protected $games;
     protected $historyPlay;
-
+    protected $users;
     public function __construct()
     {
         $this->games = new GameModel;
         $this->historyPlay = new HistoryPlayModel;
+        $this->users = new UserModel;
     }
-
 
     public function index()
     {
@@ -31,6 +31,14 @@ class HomeController extends BaseController
         $getAllDataHistory = $this->historyPlay->getAllDataHistory();
         $lisrReward = $this->historyPlay->getReward();
         $bonus = $this->historyPlay->getUserBonus(getSessionUser());
+         ////mốc nvhn
+        $totalPlay = $this->historyPlay->getTotalPlayToday(getSessionUser());
+        $moc = $this->historyPlay->getMoc($totalPlay);
+          ///bonus
+        $totalRef = $this->users->totalUserRef(getSessionUser());
+        $totalBonus = $this->users->totalBonus(getSessionUser());
+         ///fake
+        $getDataFake = json_decode(file_get_contents("https://vuabem.com/fake_data.json"), true);
         ///tạo CSRF
         $csrf_token = JWT::encode([
             "iat" => time(),
@@ -101,7 +109,7 @@ class HomeController extends BaseController
                 "msg" => "Không tồn tại mốc thưởng này vui lòng đợi cập nhật nhé"
             ]);
         } catch (Exception $e) {
-            return jsonResponse(["status" => "error", "msg" => "SECRET_KEY NOT VERIFY"]);
+            return jsonResponse(["status" => "error", "msg" => "Bạn hãy tải lại hệ thống và truy cập lại ^^"]);
         }
     }
 }

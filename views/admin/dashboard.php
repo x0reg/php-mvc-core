@@ -1,4 +1,4 @@
-<?php require_once(__DIR__ . "./layout/head.php") ?>
+<?php require_once(__DIR__ . "/layout/head.php") ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -8,11 +8,11 @@
         </div>
 
         <!-- Navbar -->
-        <?php require_once(__DIR__ . "./layout/navbar.php") ?>
+        <?php require_once(__DIR__ . "/layout/navbar.php") ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php require_once(__DIR__ . "./layout/sidebar.php") ?>
+        <?php require_once(__DIR__ . "/layout/sidebar.php") ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -33,7 +33,56 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <h3 class="card-title">Thống Kê ALL</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                        <p class="text-success text-xl">
+                                            <i class="ion ion-ios-refresh-empty"></i>
+                                        </p>
+                                        <p class="d-flex flex-column text-right">
+                                            <span class="font-weight-bold">
+                                                <?= customNumberFormat($getAllTongNhan) ?> xu
+                                            </span>
+                                            <span class="text-muted">Tổng Tiền Đã Nhận</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
+                                    <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                        <p class="text-warning text-xl">
+                                            <i class="ion ion-ios-cart-outline"></i>
+                                        </p>
+                                        <p class="d-flex flex-column text-right">
+                                            <span class="font-weight-bold">
+                                                <?= customNumberFormat($getAllTongTra) ?> xu
+                                            </span>
+                                            <span class="text-muted">Tổng Tiền Đã Trả</span>
+                                            <span class="font-weight-bold">
+                                                <?= customNumberFormat($allNVHN) ?> xu
+                                            </span>
+                                            <span class="text-muted">Xu Trả NVHN</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
+                                    <div class="d-flex justify-content-between align-items-center mb-0">
+                                        <p class="text-danger text-xl">
+                                            <i class="ion ion-ios-people-outline"></i>
+                                        </p>
+                                        <p class="d-flex flex-column text-right">
+                                            <span class="font-weight-bold">
+                                                <?= customNumberFormat($doanhthuall) ?> xu
+                                            </span>
+                                            <span class="text-muted">Doanh Thu</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-header border-0">
 
@@ -83,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-header border-0">
                                     <h3 class="card-title">Thống Kê Tuần Trước / Tuần này</h3>
@@ -133,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-header border-0">
                                     <h3 class="card-title">Thống Kê Hôm qua / Hôm Nay</h3>
@@ -329,7 +378,7 @@
     </div>
     <!-- ./wrapper -->
 
-    <?php require_once(__DIR__ . "./layout/footer.php") ?>
+    <?php require_once(__DIR__ . "/layout/footer.php") ?>
 </body>
 
 </html>

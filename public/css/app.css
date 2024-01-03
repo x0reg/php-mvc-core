@@ -10776,8 +10776,8 @@ ul.custom-list ul li{
   padding-right: 1.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
+  text-transform: none;
   font-weight: 600;
-  text-transform: uppercase;
   --tw-text-opacity: 1;
   color: rgb(71 85 105 / var(--tw-text-opacity));
 }
@@ -12930,7 +12930,7 @@ ul.custom-list ul li{
   overflow-x: hidden;
   border-style: none;
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: #99CCFF;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   padding-left: 1rem;
@@ -13036,6 +13036,7 @@ ul.custom-list ul li{
 .semiDark .navItem.active{
   --tw-bg-opacity: 1;
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+
 }
 
 .icon-arrow{
@@ -13362,6 +13363,11 @@ ul.custom-list ul li{
 .semiDark .sidebar-wrapper{
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
+ .nav-icon {
+    font-size: 25px;
+    color: #00FFFF;
 }
 
 .semiDark .black_logo{

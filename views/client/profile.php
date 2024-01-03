@@ -30,7 +30,7 @@
                                             </header>
                                             <div class="card-text h-full space-y-4">
                                                 <div class="input-area">
-                                                    Tài Khoản :
+                                                    Username :
                                                     <div class="relative">
                                                         <input type="text" class="form-control !pr-12" value="<?= $info["username"] ?>" disabled="disabled">
 
@@ -38,20 +38,19 @@
                                                 </div>
 
                                                 <div class="input-area">
-                                                    Số Dư :
+                                                    Số Dư Thực:
                                                     <div class="relative">
-                                                        <input type="text" class="form-control !pr-12" value="<?= customNumberFormat($info["money"]) ?>" disabled="disabled">
+                                                        <input type="text" class="form-control !pr-12" value="<?= customNumberFormat($info["money"]) ?> xu" disabled="disabled">
 
                                                     </div>
                                                 </div>
 
-                                                <div class="input-area">
-                                                    Thời Gian Tham Gia :
-                                                    <div class="relative">
-                                                        <input type="text" class="form-control !pr-12" value=" <?= $info["time"] ?>" disabled="disabled">
-
-                                                    </div>
-                                                </div>
+                                                <!--<div class="input-area">-->
+                                                <!--    Thời Gian Tham Gia :-->
+                                                <!--    <div class="relative">-->
+                                                <!--        <input type="text" class="form-control !pr-12" value=" <?= $info["time"] ?>" disabled="disabled">-->
+                                                <!--    </div>-->
+                                                <!--</div>-->
 
                                             </div>
                                         </div>
@@ -97,7 +96,7 @@
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn inline-flex justify-center btn-dark">Cập Nhật</button>
+                                                        <button type="submit" class="btn inline-flex justify-center btn-info" style="color: #696969; width: 100%;"> Cập Nhật</button>
                                                     </div>
                                                 </form>
                                             </div>

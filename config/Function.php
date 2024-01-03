@@ -33,8 +33,10 @@ function customNumberFormat($number)
 
 function redirect($uri)
 {
-    header("Location: {$uri}");
-    exit();
+    ob_start();
+    header('Location: ' . $uri);
+    exit;
+    ob_end_flush();
 }
 
 
@@ -106,6 +108,10 @@ function randTrandID($m, $type)
             break;
         case '2':
             $trandID = $m . rand(0000, 99999) . random_strings(8);
+            return strtoupper($trandID);
+            break;
+        case '3':
+            $trandID = $m . rand(000000000, 9999999999);
             return strtoupper($trandID);
             break;
         default:
@@ -204,34 +210,50 @@ function customDate($days)
             return "CASE ERROR";
             break;
     }
-    function generateRandomPhoneNumber()
-    {
-        // Mảng chứa đầu số của các nhà mạng
-        $networkPrefixes = [
-            '086', '096', '097', '098', '032', '033', '034', '035', '036', '037', '038', '039', // Viettel
-            '088', '091', '094', '083', '084', '085', // Vinaphone
-            '089', '090', '093', '070', '079', '077', '076', '078', // Mobifone
-            '092', '056', '058', // Vietnamobile
-            '099', '059' // Gmobile (G Viet)
-        ];
+}
+function generateRandomPhoneNumber()
+{
+    // Mảng chứa đầu số của các nhà mạng
+    $networkPrefixes = [
+        '086', '096', '097', '098', '032', '033', '034', '035', '036', '037', '038', '039', // Viettel
+        '088', '091', '094', '083', '084', '085', // Vinaphone
+        '089', '090', '093', '070', '079', '077', '076', '078', // Mobifone
+        '092', '056', '058', // Vietnamobile
+        '099', '059' // Gmobile (G Viet)
+    ];
 
-        // Chọn ngẫu nhiên một đầu số từ mảng
-        $randomPrefix = $networkPrefixes[array_rand($networkPrefixes)];
-        $randomNumber = sprintf("%07d", mt_rand(0, 99999999999999999));
+    // Chọn ngẫu nhiên một đầu số từ mảng
+    $randomPrefix = $networkPrefixes[array_rand($networkPrefixes)];
+    $randomNumber = sprintf("%07d", mt_rand(0, 99999999999999999));
 
-        // Kết hợp đầu số và số còn lại để tạo số điện thoại hoàn chỉnh
-        $phoneNumber = $randomPrefix . $randomNumber;
+    // Kết hợp đầu số và số còn lại để tạo số điện thoại hoàn chỉnh
+    $phoneNumber = $randomPrefix . $randomNumber;
 
-        return $phoneNumber;
+    return $phoneNumber;
+}
+
+function statusWithDraw($stt)
+{
+    switch ($stt) {
+
+        default:
+            return "<span class='badge badge-warning'>No Case</span>";
+            break;
     }
+}
 
-    function statusWithDraw($stt)
-    {
-        switch ($stt) {
+function Settings($data)
+{
+    $app = new AppQuery();
+    $stmt = $app->pdo->prepare("SELECT * FROM settings WHERE id = 1");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result[$data];
+}
 
-            default:
-                return "<span class='badge badge-warning'>No Case</span>";
-                break;
-        }
-    }
+
+function rememberMe($token)
+{
+    $expires = time() + 30 * 24 * 60 * 60; // 30 ngày
+    return setcookie('remember_me', $token, $expires, '/');
 }

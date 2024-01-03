@@ -45,6 +45,7 @@
          $("#example1").DataTable({
              "responsive": true,
              "lengthChange": false,
+              "pageLength": 50,
              "autoWidth": false,
              "buttons": ["copy", "csv", "excel", "pdf", "print"],
              order: [

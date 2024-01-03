@@ -1,4 +1,3 @@
-
 <?php
 
 class AdminModel extends AppQuery
@@ -7,7 +6,7 @@ class AdminModel extends AppQuery
     public function getAllDataHistory()
     {
         try {
-            $statement = $this->pdo->prepare("SELECT * FROM z_history_play ORDER BY id DESC");
+            $statement = $this->pdo->prepare("SELECT * FROM z_history_play WHERE comment != 'FAKE' ORDER BY id DESC");
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (\Throwable $e) {
@@ -15,12 +14,51 @@ class AdminModel extends AppQuery
             return 0;
         }
     }
+    
+       public function getAllTongNhan()
+    {
+        try {
+            // $today = date("Y-m-d");
+            $stmt = $this->pdo->prepare("SELECT SUM(amount) as total_money FROM z_history_play");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['total_money'] ?  $result['total_money'] : 0;
+        } catch (PDOException $e) {
+            die("Querry ERRORR: " . $e->getMessage());
+        }
+    }
+
+    public function getAllTongTra()
+    {
+        try {
+            // $today = date("Y-m-d");
+            $stmt = $this->pdo->prepare("SELECT SUM(received_amount) as total_money FROM z_history_play");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['total_money'] ?  $result['total_money'] : 0;
+        } catch (PDOException $e) {
+            die("Querry ERRORR: " . $e->getMessage());
+        }
+    }
+
+    public function getTotalNVHN()
+    {
+        try {
+            // $today = date("Y-m-d");
+            $stmt = $this->pdo->prepare("SELECT SUM(amount) as total_money FROM z_history_nvhn");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['total_money'] ?  $result['total_money'] : 0;
+        } catch (PDOException $e) {
+            die("Querry ERRORR: " . $e->getMessage());
+        }
+    }
 
     public function getToltalAmoutRechargeToday($today)
     {
         try {
             // $today = date("Y-m-d");
-            $stmt = $this->pdo->prepare("SELECT SUM(money) as total_money FROM history_bank WHERE DATE(time) = :today");
+            $stmt = $this->pdo->prepare("SELECT SUM(amount) as total_money FROM z_history_play WHERE DATE(created_at) = :today");
             $stmt->bindParam(':today', $today, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -34,7 +72,7 @@ class AdminModel extends AppQuery
     {
         try {
             // $today = date("Y-m-d");
-            $stmt = $this->pdo->prepare("SELECT SUM(money) as total_money FROM lichsuruttien WHERE DATE(time) = :today");
+            $stmt = $this->pdo->prepare("SELECT SUM(received_amount) as total_money FROM z_history_play WHERE DATE(created_at) = :today");
             $stmt->bindParam(':today', $today, PDO::PARAM_STR);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -86,7 +124,7 @@ class AdminModel extends AppQuery
     {
         try {
             // Lấy ngày bắt đầu và kết thúc của tuần này
-            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM history_bank WHERE time >= :startOfWeek AND time <= :endOfWeek");
+            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(amount), 0) as total_money FROM z_history_play WHERE DATE(created_at) >= :startOfWeek AND DATE(created_at) <= :endOfWeek");
             $stmt->bindParam(':startOfWeek', $startOfWeek);
             $stmt->bindParam(':endOfWeek', $endOfWeek);
             $stmt->execute();
@@ -103,7 +141,7 @@ class AdminModel extends AppQuery
             // Lấy ngày bắt đầu và kết thúc của tuần này
             // $startOfWeek = date("Y-m-d", strtotime("monday this week"));
             // $endOfWeek = date("Y-m-d", strtotime("sunday this week"));
-            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM lichsuruttien WHERE DATE(time) >= :startOfWeek AND DATE(time) <= :endOfWeek");
+            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(received_amount), 0) as total_money FROM z_history_play WHERE DATE(created_at) >= :startOfWeek AND DATE(created_at) <= :endOfWeek");
             $stmt->bindParam(':startOfWeek', $startOfWeek);
             $stmt->bindParam(':endOfWeek', $endOfWeek);
             $stmt->execute();
@@ -139,7 +177,7 @@ class AdminModel extends AppQuery
             // Lấy ngày bắt đầu và kết thúc của tháng này
             // $startOfMonth = date("Y-m-01");
             // $endOfMonth = date("Y-m-t");
-            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM history_bank WHERE time >= :startOfMonth AND time <= :endOfMonth");
+            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(amount), 0) as total_money FROM z_history_play WHERE DATE(created_at) >= :startOfMonth AND DATE(created_at) <= :endOfMonth");
             $stmt->bindParam(':startOfMonth', $startOfMonth);
             $stmt->bindParam(':endOfMonth', $endOfMonth);
             $stmt->execute();
@@ -156,7 +194,7 @@ class AdminModel extends AppQuery
             // Lấy ngày bắt đầu và kết thúc của tháng này
             // $startOfMonth = date("Y-m-01");
             // $endOfMonth = date("Y-m-t");
-            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(money), 0) as total_money FROM lichsuruttien WHERE time >= :startOfMonth AND time <= :endOfMonth");
+            $stmt = $this->pdo->prepare("SELECT COALESCE(SUM(received_amount), 0) as total_money FROM z_history_play WHERE DATE(created_at) >= :startOfMonth AND DATE(created_at) <= :endOfMonth");
             $stmt->bindParam(':startOfMonth', $startOfMonth);
             $stmt->bindParam(':endOfMonth', $endOfMonth);
             $stmt->execute();

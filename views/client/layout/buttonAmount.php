@@ -1,7 +1,9 @@
+<p class="text-danger h6">Số Dư Thực :<b id="soduthuc"> <?= customNumberFormat(getInfoUser("money")) ?></b> xu</p> 
+<br>
 <div class="input-area">
     <label class="block font-medium text-secondary-700 dark:text-secondary-400">Đặt
-        Tiền Cược:</label>
-    <input id="amount" value="" type="text" class="form-control mt-1" placeholder="Tiền Cược">
+        Xu Cược:</label>
+    <input id="amount" value="" type="text" class="form-control mt-1" placeholder="1.000 - 500.000 xu">
 </div>
 
 <div class="card mt-3">

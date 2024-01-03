@@ -45,4 +45,16 @@ class UserController extends BaseController
         }
         return jsonResponse(["status" => "error", "message" => "Cái loz gì z"]);
     }
+    
+    public function cachChoi()
+    {
+        return view("client/cachchoi");
+    }
+    
+       public function getSodu()
+    {
+        return jsonResponse([
+            "money" => customNumberFormat(getInfoUser("money"))
+        ]);
+    }
 }

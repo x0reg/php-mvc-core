@@ -1,4 +1,4 @@
-<?php require_once(__DIR__ . "./layout/head.php") ?>
+<?php require_once(__DIR__ . "/layout/head.php") ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -8,11 +8,11 @@
         </div>
 
         <!-- Navbar -->
-        <?php require_once(__DIR__ . "./layout/navbar.php") ?>
+        <?php require_once(__DIR__ . "/layout/navbar.php") ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php require_once(__DIR__ . "./layout/sidebar.php") ?>
+        <?php require_once(__DIR__ . "/layout/sidebar.php") ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -76,7 +76,7 @@
 
     </div>
     <!-- ./wrapper -->
-    <?php require_once(__DIR__ . "./layout/footer.php") ?>
+    <?php require_once(__DIR__ . "/layout/footer.php") ?>
 
 </body>
 <script>
